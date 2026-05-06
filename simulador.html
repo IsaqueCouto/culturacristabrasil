@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulador de Incentivo Fiscal — Cultura Cristã Brasil</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Mundial', 'Helvetica Neue', 'sans-serif'],
+            sans:  ['Mundial', 'Helvetica Neue', 'sans-serif'],
             toska: ['Toska', 'Georgia', 'serif'],
           },
           colors: {
@@ -49,8 +48,8 @@
 </head>
 <body class="bg-ccb-white min-h-screen font-sans">
 
-  <!-- ═══ NAVBAR ════════════════════════════════════════════════ -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 h-[68px] flex items-center px-5 lg:px-10 bg-navy/97 backdrop-blur-md border-b border-white/5 transition-shadow duration-300">
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 h-[68px] flex items-center px-5 lg:px-10 bg-navy backdrop-blur-md border-b border-white/5 transition-shadow duration-300">
     <div class="w-full max-w-6xl mx-auto flex items-center justify-between">
       <a href="./"><img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="h-9"></a>
       <ul class="hidden md:flex items-center gap-1 list-none m-0 p-0">
@@ -69,7 +68,7 @@
   </nav>
 
   <!-- Mobile nav -->
-  <div id="mobileNav" class="hidden fixed top-[68px] left-0 right-0 z-40 bg-navy-deep/98 backdrop-blur-md border-b border-white/10 md:hidden">
+  <div id="mobileNav" class="hidden fixed top-[68px] left-0 right-0 z-40 bg-navy-deep backdrop-blur-md border-b border-white/10 md:hidden">
     <ul class="list-none m-0 p-0 py-2">
       <li><a href="./" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Início</a></li>
       <li><a href="./#sobre" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Sobre</a></li>
@@ -81,7 +80,7 @@
     </ul>
   </div>
 
-  <!-- ═══ PAGE HEADER ══════════════════════════════════════════ -->
+  <!-- PAGE HEADER -->
   <div class="bg-navy pt-[108px] pb-14 px-5 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none">
       <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 80% at 80% 50%,rgba(38,104,130,0.25) 0%,transparent 65%)"></div>
@@ -90,52 +89,62 @@
     <div class="relative max-w-2xl mx-auto text-center">
       <div class="inline-flex items-center gap-2 text-green-brand text-xs font-bold tracking-[0.16em] uppercase mb-5">
         <span class="w-5 h-0.5 rounded" style="background:linear-gradient(90deg,#178e64,#51d081)"></span>
-        Lei Rouanet · Lei do Esporte · FIA
+        IR · ICMS · ISS · IPTU
       </div>
       <h1 class="font-toska text-[clamp(1.9rem,5vw,3.2rem)] text-ccb-white font-normal leading-tight mb-5">
-        Descubra quanto do seu imposto você pode <em style="background:linear-gradient(135deg,#3598b9,#58b6e7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transformar</em> em impacto social
+        Descubra quanto dos seus impostos você pode <em style="background:linear-gradient(135deg,#3598b9,#58b6e7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transformar</em> em impacto social
       </h1>
       <p class="text-white/60 text-[0.95rem] leading-relaxed max-w-md mx-auto">
-        Simule em segundos. Sem complicação. <strong class="text-white/80">Sem custo extra para você.</strong>
+        Simulação completa: IR federal + oportunidades estaduais e municipais. <strong class="text-white/80">Sem custo extra para você.</strong>
       </p>
     </div>
   </div>
 
-  <!-- ═══ SIMULATOR ═════════════════════════════════════════════ -->
+  <!-- SIMULATOR -->
   <div class="max-w-2xl mx-auto px-4 py-10 pb-20">
 
     <!-- STEP 1 — Profile -->
     <div id="step1" class="bg-white rounded-2xl shadow-lg p-7 sm:p-10 fade-in">
       <h2 class="font-toska text-2xl text-navy font-normal mb-1">Você é…</h2>
-      <p class="text-text-body text-sm mb-7 leading-relaxed">Escolha seu perfil para calcular corretamente.</p>
+      <p class="text-text-body text-sm mb-7 leading-relaxed">Escolha seu perfil para calcular as oportunidades corretas.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <button onclick="selectType('pf')"
-          class="border-2 border-teal/25 rounded-xl p-6 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
+          class="border-2 border-teal/25 rounded-xl p-5 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
           <div class="font-toska text-3xl text-teal mb-3">PF</div>
           <div class="font-bold text-text-dark text-sm mb-1">Pessoa Física</div>
-          <div class="text-text-muted text-xs leading-relaxed">Declaração completa do IRPF.<br>Redirecione até <strong class="text-teal">6%</strong> do IR devido.</div>
+          <div class="text-text-muted text-xs leading-relaxed">Declaração completa.<br>Até <strong class="text-teal">6%</strong> do IRPF.</div>
         </button>
         <button onclick="selectType('pj')"
-          class="border-2 border-teal/25 rounded-xl p-6 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
+          class="border-2 border-teal/25 rounded-xl p-5 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
           <div class="font-toska text-3xl text-teal mb-3">PJ</div>
           <div class="font-bold text-text-dark text-sm mb-1">Empresa (Lucro Real)</div>
-          <div class="text-text-muted text-xs leading-relaxed">Lucro Real.<br>Redirecione até <strong class="text-teal">7%</strong> do IRPJ devido.</div>
+          <div class="text-text-muted text-xs leading-relaxed">Lucro Real.<br>Até <strong class="text-teal">8%</strong> do IRPJ.</div>
+        </button>
+        <button onclick="selectType('ambos')"
+          class="border-2 border-teal/25 rounded-xl p-5 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
+          <div class="font-toska text-3xl text-teal mb-3">👥</div>
+          <div class="font-bold text-text-dark text-sm mb-1">Ambos</div>
+          <div class="text-text-muted text-xs leading-relaxed">PF + PJ combinados.</div>
         </button>
       </div>
 
-      <div class="grid grid-cols-3 gap-3">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <div class="bg-teal-soft rounded-xl p-3 text-center">
           <div class="text-teal font-bold text-xs">Lei Rouanet</div>
-          <div class="text-text-muted text-[10px] mt-0.5">Cultura · 4%</div>
+          <div class="text-text-muted text-[10px] mt-0.5">Cultura · 4% PJ</div>
         </div>
         <div class="bg-green-soft rounded-xl p-3 text-center">
           <div class="text-green-dark font-bold text-xs">Lei do Esporte</div>
-          <div class="text-text-muted text-[10px] mt-0.5">Esporte · 2%</div>
+          <div class="text-text-muted text-[10px] mt-0.5">Esporte · 2% PJ</div>
         </div>
         <div class="rounded-xl p-3 text-center" style="background:rgba(255,163,0,0.08)">
           <div class="text-orange font-bold text-xs">FIA</div>
-          <div class="text-text-muted text-[10px] mt-0.5">Infância · 1%</div>
+          <div class="text-text-muted text-[10px] mt-0.5">Infância · 1% PJ</div>
+        </div>
+        <div class="rounded-xl p-3 text-center" style="background:rgba(53,152,185,0.08)">
+          <div class="font-bold text-xs" style="color:#3598b9">Est. Idoso</div>
+          <div class="text-text-muted text-[10px] mt-0.5">Idoso · 1% PJ</div>
         </div>
       </div>
     </div>
@@ -147,41 +156,46 @@
         Voltar
       </button>
 
-      <div id="label-pf" class="hidden">
-        <h2 class="font-toska text-2xl text-navy font-normal mb-2">Quanto você paga de Imposto de Renda por ano?</h2>
-        <p class="text-text-body text-sm mb-6 leading-relaxed">Use o <strong>IRPF devido</strong> da sua última declaração completa. Está no resumo da declaração no e-CAC.</p>
-      </div>
-      <div id="label-pj" class="hidden">
-        <h2 class="font-toska text-2xl text-navy font-normal mb-2">Quanto sua empresa paga de Imposto de Renda por ano?</h2>
-        <p class="text-text-body text-sm mb-6 leading-relaxed">Use o <strong>IRPJ devido</strong> — não o faturamento ou lucro. Seu contador ou setor financeiro tem esse número.</p>
+      <!-- PF block -->
+      <div id="block-pf" class="hidden mb-7">
+        <h2 class="font-toska text-xl text-navy font-normal mb-1">Pessoa Física</h2>
+        <p class="text-text-body text-sm mb-4 leading-relaxed">Quanto você paga de <strong>Imposto de Renda</strong> por ano? (IRPF devido — use a declaração completa no e-CAC)</p>
+        <div class="relative mb-1.5">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
+          <input id="irInputPF" type="text" placeholder="0,00" inputmode="numeric"
+            oninput="formatCurrencyInput(this)"
+            class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
+            style="font-family:'Mundial',sans-serif">
+        </div>
+        <p class="text-text-muted text-xs">Ex.: quem paga R$&nbsp;50.000 de IR pode redirecionar até <strong class="text-teal">R$&nbsp;3.000</strong></p>
       </div>
 
-      <div class="relative mb-2">
-        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
-        <input id="irInput" type="text" placeholder="0,00" inputmode="numeric"
-          oninput="formatCurrencyInput(this); updateExample()"
-          class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
-          style="font-family:'Mundial',sans-serif"
-        >
+      <!-- PJ block -->
+      <div id="block-pj" class="hidden">
+        <h2 class="font-toska text-xl text-navy font-normal mb-1">Empresa (Lucro Real)</h2>
+        <p class="text-text-body text-sm mb-4 leading-relaxed">Quanto sua empresa paga de <strong>IRPJ</strong> por ano? (valor devido — não o faturamento ou lucro bruto)</p>
+        <div class="relative mb-1.5">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
+          <input id="irInputPJ" type="text" placeholder="0,00" inputmode="numeric"
+            oninput="formatCurrencyInput(this)"
+            class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
+            style="font-family:'Mundial',sans-serif">
+        </div>
+        <p class="text-text-muted text-xs">Ex.: empresa com R$&nbsp;100.000 de IRPJ pode redirecionar até <strong class="text-teal">R$&nbsp;8.000</strong></p>
       </div>
-      <p class="text-text-muted text-xs mb-7 leading-relaxed">
-        Exemplo: quem paga R$ 50.000 de IR pode redirecionar até
-        <strong id="exampleVal" class="text-teal">R$ 3.000,00</strong>
-        sem gastar nada a mais.
-      </p>
 
       <button onclick="calculate()"
-        class="w-full py-4 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+        class="w-full py-4 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 mt-2"
         style="background:linear-gradient(135deg,#266882,#3598b9)">
         Calcular meu potencial →
       </button>
     </div>
 
-    <!-- STEP 3 — Result -->
-    <div id="step3" class="hidden">
+    <!-- STEP 3 — Results -->
+    <div id="step3" class="hidden space-y-5">
 
-      <!-- Big number -->
-      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10 mb-5 fade-in">
+      <!-- Summary -->
+      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10 fade-in">
         <div class="text-center pb-7 border-b border-teal/10">
           <div class="text-text-muted text-[10px] uppercase tracking-[0.2em] font-bold mb-3">Você pode destinar até</div>
           <div class="font-toska leading-none mb-3" style="font-size:clamp(3rem,10vw,5rem);color:#266882">
@@ -192,93 +206,192 @@
           </p>
         </div>
 
-        <!-- Project distribution -->
-        <div class="pt-7 mb-6">
-          <h3 class="font-toska text-xl text-navy font-normal mb-1">Veja como seu imposto gera impacto</h3>
-          <p class="text-text-muted text-xs mb-5">Distribuição pelos 3 projetos ativos da CCB</p>
+        <!-- PF breakdown -->
+        <div id="res-pf" class="hidden pt-6 border-b border-teal/10 pb-6">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-text-dark text-sm">Pessoa Física</span>
+            <span class="font-toska text-xl text-teal">R$ <span id="pfTotal">0</span></span>
+          </div>
+          <p class="text-text-muted text-xs">6% do IRPF distribuído entre os 4 projetos.</p>
+        </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <!-- Cultura -->
-            <div class="bg-teal-soft rounded-xl p-4 border border-teal/15">
-              <div class="flex items-center gap-1.5 mb-2.5">
-                <span class="text-lg">🎵</span>
-                <span class="text-teal text-[10px] font-bold uppercase tracking-wider">Lei Rouanet</span>
-              </div>
-              <div class="font-bold text-text-dark text-[0.82rem] mb-1.5" id="culturaName">Projeto Musical CCB</div>
-              <div class="font-toska text-2xl text-teal mb-1">
-                <span class="text-xs font-sans text-text-muted">R$ </span><span id="culturaVal">0</span>
-              </div>
-              <p class="text-text-muted text-[11px] leading-relaxed mb-1.5" id="culturaDesc">Formação musical e artística para jovens cristãos.</p>
-              <div class="text-teal text-[10px] font-bold" id="culturaTag"></div>
+        <!-- PJ breakdown -->
+        <div id="res-pj" class="hidden pt-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-bold text-text-dark text-sm">Empresa (Lucro Real)</span>
+            <span class="font-toska text-xl text-teal">R$ <span id="pjTotal">0</span></span>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-text-body text-xs">Cultura — Lei Rouanet (4%)</span>
+              <span class="font-bold text-teal text-sm">R$ <span id="pjCulturaVal">0</span></span>
             </div>
-
-            <!-- Esporte -->
-            <div class="bg-green-soft rounded-xl p-4 border border-green-dark/15">
-              <div class="flex items-center gap-1.5 mb-2.5">
-                <span class="text-lg">⚽</span>
-                <span class="text-green-dark text-[10px] font-bold uppercase tracking-wider">Lei do Esporte</span>
-              </div>
-              <div class="font-bold text-text-dark text-[0.82rem] mb-1.5" id="esporteName">Projeto Esporte Cristão</div>
-              <div class="font-toska text-2xl text-green-dark mb-1">
-                <span class="text-xs font-sans text-text-muted">R$ </span><span id="esporteVal">0</span>
-              </div>
-              <p class="text-text-muted text-[11px] leading-relaxed mb-1.5" id="esporteDesc">Treinos esportivos e desenvolvimento para jovens.</p>
-              <div class="text-green-dark text-[10px] font-bold" id="esporteTag"></div>
+            <div class="flex items-center justify-between">
+              <span class="text-text-body text-xs">Esporte — Lei do Esporte (2%)</span>
+              <span class="font-bold text-green-dark text-sm">R$ <span id="pjEsporteVal">0</span></span>
             </div>
-
-            <!-- Infância -->
-            <div class="rounded-xl p-4 border" style="background:rgba(255,163,0,0.06);border-color:rgba(255,163,0,0.2)">
-              <div class="flex items-center gap-1.5 mb-2.5">
-                <span class="text-lg">👶</span>
-                <span class="text-orange text-[10px] font-bold uppercase tracking-wider">FIA</span>
-              </div>
-              <div class="font-bold text-text-dark text-[0.82rem] mb-1.5" id="infanciaName">Apoio às Crianças (CAC)</div>
-              <div class="font-toska text-2xl text-orange mb-1">
-                <span class="text-xs font-sans text-text-muted">R$ </span><span id="infanciaVal">0</span>
-              </div>
-              <p class="text-text-muted text-[11px] leading-relaxed mb-1.5" id="infanciaDesc">Cuidado, educação e apoio para crianças em vulnerabilidade.</p>
-              <div class="text-orange text-[10px] font-bold" id="infanciaTag"></div>
+            <div class="flex items-center justify-between">
+              <span class="text-text-body text-xs">Infância — FIA (1%)</span>
+              <span class="font-bold text-orange text-sm">R$ <span id="pjInfanciaVal">0</span></span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-text-body text-xs">Idoso — Estatuto do Idoso (1%)</span>
+              <span class="font-bold text-sm" style="color:#3598b9">R$ <span id="pjIdosoVal">0</span></span>
             </div>
           </div>
         </div>
 
-        <!-- Impact line -->
-        <div class="bg-teal-soft rounded-xl p-4 text-center text-text-body text-sm leading-relaxed mb-7">
-          💚 Com esse valor, você ajuda a transformar vidas reais através dos nossos projetos.
-        </div>
-
-        <!-- How it works -->
-        <div class="border-t border-teal/10 pt-6 mb-7">
-          <h3 class="font-toska text-lg text-navy font-normal mb-4">Como funciona na prática</h3>
-          <div class="space-y-3">
-            <div class="flex gap-3 items-start">
-              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">1</div>
-              <p class="text-text-body text-sm leading-relaxed">Você escolhe os projetos que deseja apoiar e confirma com a CCB</p>
-            </div>
-            <div class="flex gap-3 items-start">
-              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">2</div>
-              <p class="text-text-body text-sm leading-relaxed">Faz o depósito diretamente na conta do projeto aprovado</p>
-            </div>
-            <div class="flex gap-3 items-start">
-              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">3</div>
-              <p class="text-text-body text-sm leading-relaxed">Recebe o recibo oficial (PRONAC / comprovante legal)</p>
-            </div>
-            <div class="flex gap-3 items-start">
-              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">4</div>
-              <p class="text-text-body text-sm leading-relaxed">Seu contador aplica o abatimento na declaração — é simples</p>
-            </div>
+        <!-- Ambos note -->
+        <div id="res-combined" class="hidden mt-4">
+          <div class="bg-teal-soft rounded-xl p-3 text-center">
+            <p class="text-text-muted text-xs">Valores provenientes de declarações separadas (pessoa física e jurídica)</p>
           </div>
-          <p class="text-text-muted text-xs mt-4 italic">Nós te ajudamos em todo o processo, junto com seu contador.</p>
         </div>
+      </div>
 
-        <!-- WhatsApp CTA -->
+      <!-- Project cards -->
+      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10">
+        <h3 class="font-toska text-xl text-navy font-normal mb-1">Veja como seu imposto gera impacto</h3>
+        <p class="text-text-muted text-xs mb-5">Distribuição pelos projetos ativos da CCB</p>
+        <div class="grid grid-cols-2 gap-3">
+
+          <div class="bg-teal-soft rounded-xl p-4 border border-teal/15">
+            <div class="flex items-center gap-1.5 mb-2">
+              <span>🎵</span>
+              <span class="text-teal text-[10px] font-bold uppercase tracking-wider">Lei Rouanet</span>
+            </div>
+            <div class="font-bold text-text-dark text-xs mb-1.5" id="culturaName">—</div>
+            <div class="font-toska text-xl text-teal mb-1"><span class="text-xs font-sans text-text-muted">R$ </span><span id="culturaVal">0</span></div>
+            <p class="text-text-muted text-[11px] leading-relaxed" id="culturaDesc">—</p>
+          </div>
+
+          <div class="bg-green-soft rounded-xl p-4 border border-green-dark/15">
+            <div class="flex items-center gap-1.5 mb-2">
+              <span>⚽</span>
+              <span class="text-green-dark text-[10px] font-bold uppercase tracking-wider">Lei do Esporte</span>
+            </div>
+            <div class="font-bold text-text-dark text-xs mb-1.5" id="esporteName">—</div>
+            <div class="font-toska text-xl text-green-dark mb-1"><span class="text-xs font-sans text-text-muted">R$ </span><span id="esporteVal">0</span></div>
+            <p class="text-text-muted text-[11px] leading-relaxed" id="esporteDesc">—</p>
+          </div>
+
+          <div class="rounded-xl p-4 border" style="background:rgba(255,163,0,0.06);border-color:rgba(255,163,0,0.2)">
+            <div class="flex items-center gap-1.5 mb-2">
+              <span>👶</span>
+              <span class="text-orange text-[10px] font-bold uppercase tracking-wider">FIA</span>
+            </div>
+            <div class="font-bold text-text-dark text-xs mb-1.5" id="infanciaName">—</div>
+            <div class="font-toska text-xl text-orange mb-1"><span class="text-xs font-sans text-text-muted">R$ </span><span id="infanciaVal">0</span></div>
+            <p class="text-text-muted text-[11px] leading-relaxed" id="infanciaDesc">—</p>
+          </div>
+
+          <div class="rounded-xl p-4 border" style="background:rgba(53,152,185,0.07);border-color:rgba(53,152,185,0.2)">
+            <div class="flex items-center gap-1.5 mb-2">
+              <span>👴</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider" style="color:#3598b9">Est. do Idoso</span>
+            </div>
+            <div class="font-bold text-text-dark text-xs mb-1.5" id="idosoName">—</div>
+            <div class="font-toska text-xl mb-1" style="color:#3598b9"><span class="text-xs font-sans text-text-muted">R$ </span><span id="idosoVal">0</span></div>
+            <p class="text-text-muted text-[11px] leading-relaxed" id="idosoDesc">—</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Multi-tax opportunities -->
+      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10">
+        <h3 class="font-toska text-xl text-navy font-normal mb-1">Outras formas de direcionar seus impostos</h3>
+        <p class="text-text-muted text-xs mb-6 leading-relaxed">Além do IR, sua empresa pode ter outras oportunidades dependendo da atividade e localização.</p>
+
+        <div class="space-y-4">
+
+          <div class="rounded-xl border p-5" style="background:rgba(23,142,100,0.04);border-color:rgba(23,142,100,0.18)">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <div>
+                <div class="font-bold text-text-dark text-sm">ICMS <span class="text-text-muted font-normal text-xs">(Estadual)</span></div>
+                <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(23,142,100,0.12);color:#178e64">Depende do estado e regime</span>
+              </div>
+              <span class="text-2xl shrink-0">🏛️</span>
+            </div>
+            <p class="text-text-body text-xs leading-relaxed mb-2">Empresas em Santa Catarina podem utilizar programas como <strong>SEITEC</strong> e <strong>PIC</strong> para direcionar parte do ICMS para projetos culturais, esportivos e sociais.</p>
+            <p class="text-green-dark text-xs font-bold mb-3">Possível direcionamento: até cerca de 15% do ICMS (varia conforme empresa)</p>
+            <a id="icmsBtn" href="#" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
+              style="background:#178e64">
+              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Quero verificar meu ICMS
+            </a>
+          </div>
+
+          <div class="rounded-xl border p-5" style="background:rgba(38,104,130,0.04);border-color:rgba(38,104,130,0.18)">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <div>
+                <div class="font-bold text-text-dark text-sm">ISS <span class="text-text-muted font-normal text-xs">(Municipal)</span></div>
+                <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(38,104,130,0.12);color:#266882">Depende da cidade</span>
+              </div>
+              <span class="text-2xl shrink-0">🏢</span>
+            </div>
+            <p class="text-text-body text-xs leading-relaxed mb-3">Empresas prestadoras de serviços podem ter acesso a <strong>incentivos fiscais municipais</strong> para apoiar projetos sociais aprovados.</p>
+            <a id="issBtn" href="#" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
+              style="background:#266882">
+              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Verificar ISS
+            </a>
+          </div>
+
+          <div class="rounded-xl border p-5" style="background:rgba(255,163,0,0.04);border-color:rgba(255,163,0,0.2)">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <div>
+                <div class="font-bold text-text-dark text-sm">IPTU <span class="text-text-muted font-normal text-xs">(Municipal)</span></div>
+                <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(255,163,0,0.12);color:#ffa300">Disponível em cidades específicas</span>
+              </div>
+              <span class="text-2xl shrink-0">🏠</span>
+            </div>
+            <p class="text-text-body text-xs leading-relaxed mb-3">Em alguns municípios é possível destinar parte do <strong>IPTU</strong> para projetos sociais aprovados pela prefeitura.</p>
+            <a id="iptuBtn" href="#" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
+              style="background:#e09000">
+              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Verificar IPTU
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10">
+        <h3 class="font-toska text-xl text-navy font-normal mb-5">Como funciona na prática</h3>
+        <div class="space-y-3">
+          <div class="flex gap-3 items-start">
+            <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">1</div>
+            <p class="text-text-body text-sm leading-relaxed">Você escolhe os projetos aprovados que deseja apoiar</p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">2</div>
+            <p class="text-text-body text-sm leading-relaxed">Realiza o depósito diretamente na conta do projeto</p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">3</div>
+            <p class="text-text-body text-sm leading-relaxed">Recebe o comprovante oficial (PRONAC / recibo legal)</p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">4</div>
+            <p class="text-text-body text-sm leading-relaxed">Seu contador aplica o abatimento na declaração</p>
+          </div>
+        </div>
+        <p class="text-text-muted text-xs mt-4 italic">Nossa equipe te orienta em todo o processo, junto com seu contador.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10">
         <a id="waBtn" href="#" target="_blank" rel="noopener"
           class="flex items-center justify-center gap-3 w-full py-4 text-white font-bold text-base rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 mb-3 no-underline"
           style="background:#25D366">
           <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Falar no WhatsApp agora
+          Quero direcionar meus impostos
         </a>
-
         <button onclick="copyContador()"
           class="flex items-center justify-center gap-2 w-full py-3.5 border-2 border-teal/30 text-teal font-semibold text-sm rounded-xl hover:border-teal hover:bg-teal-soft transition-all duration-200">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
@@ -295,7 +408,7 @@
   <!-- DISCLAIMER -->
   <div class="max-w-2xl mx-auto px-4 pb-10">
     <div class="border-l-4 border-teal/30 pl-4 text-text-muted text-xs leading-relaxed">
-      Essa é uma simulação estimada. Os percentuais são baseados na Lei nº 8.313/91 (Rouanet), Lei nº 9.615/98 (Esporte) e ECA/CONANDA (FIA). A disponibilidade dos projetos e os valores finais dependem da apuração do IR. <strong>Consulte sempre seu contador.</strong>
+      Essa é uma simulação estimada. Percentuais federais baseados nas leis vigentes (Rouanet, Esporte, FIA, Estatuto do Idoso). Incentivos estaduais e municipais dependem da legislação local e da elegibilidade da empresa. <strong>Consulte seu contador.</strong>
     </div>
   </div>
 
@@ -310,53 +423,44 @@
 
   <script>
     // ╔══════════════════════════════════════════════════════════════╗
-    // ║  CONFIG — update these values for each NGO                  ║
+    // ║  CONFIG — update these 2 blocks for each NGO               ║
     // ╚══════════════════════════════════════════════════════════════╝
-    const WHATSAPP = '55XXXXXXXXXXX'; // ← replace with real number
+    const WHATSAPP = '55XXXXXXXXXXX'; // country code + DDD + number, no spaces
 
-    const PROJECTS = {
-      cultura:  { name: 'Projeto Musical CCB',           desc: 'Formação musical e artística para jovens cristãos.' },
-      esporte:  { name: 'Projeto Esporte Cristão',       desc: 'Treinos esportivos e desenvolvimento para jovens.' },
-      infancia: { name: 'Apoio às Crianças (CAC)',       desc: 'Cuidado, educação e apoio para crianças em vulnerabilidade.' }
-    };
+    const PROJECTS = [
+      { key: 'cultura',  name: 'Projeto Musical CCB',     desc: 'Formação musical e artística para jovens cristãos.' },
+      { key: 'esporte',  name: 'Projeto Esporte Cristão', desc: 'Treinos esportivos e desenvolvimento para jovens.' },
+      { key: 'infancia', name: 'Apoio às Crianças (CAC)', desc: 'Cuidado, educação e apoio para crianças em vulnerabilidade.' },
+      { key: 'idoso',    name: 'Apoio à Terceira Idade',  desc: 'Programas de cuidado e dignidade para idosos.' }
+    ];
     // ╚══════════════════════════════════════════════════════════════╝
 
-    let userType = null;
-    let maxTotal  = 0;
+    let userType = null, maxTotal = 0, vals = {};
 
-    // Populate project names/descriptions from config
-    document.getElementById('culturaName').textContent  = PROJECTS.cultura.name;
-    document.getElementById('esporteName').textContent  = PROJECTS.esporte.name;
-    document.getElementById('infanciaName').textContent = PROJECTS.infancia.name;
-    document.getElementById('culturaDesc').textContent  = PROJECTS.cultura.desc;
-    document.getElementById('esporteDesc').textContent  = PROJECTS.esporte.desc;
-    document.getElementById('infanciaDesc').textContent = PROJECTS.infancia.desc;
+    PROJECTS.forEach(p => {
+      const n = document.getElementById(p.key + 'Name');
+      const d = document.getElementById(p.key + 'Desc');
+      if (n) n.textContent = p.name;
+      if (d) d.textContent = p.desc;
+    });
 
-    // ── Step navigation ─────────────────────────────────────────────
     function showStep(id) {
       ['step1','step2','step3'].forEach(s => document.getElementById(s).classList.add('hidden'));
       const el = document.getElementById(id);
       el.classList.remove('hidden');
       el.classList.remove('fade-in');
-      void el.offsetHeight; // reflow
+      void el.offsetHeight;
       el.classList.add('fade-in');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function selectType(type) {
       userType = type;
-      document.getElementById('label-pf').classList.toggle('hidden', type !== 'pf');
-      document.getElementById('label-pj').classList.toggle('hidden', type !== 'pj');
-      updateExample();
+      document.getElementById('block-pf').classList.toggle('hidden', type === 'pj');
+      document.getElementById('block-pj').classList.toggle('hidden', type === 'pf');
       showStep('step2');
     }
 
-    function updateExample() {
-      const rate = userType === 'pf' ? 0.06 : 0.07;
-      document.getElementById('exampleVal').textContent = 'R$ ' + formatBRL(50000 * rate);
-    }
-
-    // ── Currency helpers ────────────────────────────────────────────
     function formatCurrencyInput(el) {
       let v = el.value.replace(/\D/g, '');
       if (!v) { el.value = ''; return; }
@@ -364,60 +468,87 @@
       el.value = v;
     }
 
-    function parseBRL(s) {
-      return parseFloat((s||'').replace(/\./g,'').replace(',','.')) || 0;
+    function parseBRL(s) { return parseFloat((s||'').replace(/\./g,'').replace(',','.')) || 0; }
+    function formatBRL(n) { return n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmtInt(n) { return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
+
+    function markError(id) {
+      const el = document.getElementById(id);
+      el.style.borderColor = '#ef4444';
+      setTimeout(() => el.style.borderColor = '', 2500);
     }
 
-    function formatBRL(n) {
-      return n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    function fmtInt(n) {
-      return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-    }
-
-    // ── Calculate ───────────────────────────────────────────────────
     function calculate() {
-      const ir = parseBRL(document.getElementById('irInput').value);
-      const inp = document.getElementById('irInput');
-      if (ir <= 0) {
-        inp.style.borderColor = '#ef4444';
-        inp.placeholder = 'Por favor informe um valor';
-        return;
+      let pfCultura = 0, pfEsporte = 0, pfInfancia = 0, pfIdoso = 0, pfTotal = 0;
+      let pjCultura = 0, pjEsporte = 0, pjInfancia = 0, pjIdoso = 0, pjTotal = 0;
+      let valid = true;
+
+      if (userType === 'pf' || userType === 'ambos') {
+        const ir = parseBRL(document.getElementById('irInputPF').value);
+        if (ir <= 0) { markError('irInputPF'); valid = false; }
+        else {
+          const t = ir * 0.06;
+          pfCultura = t*(4/8); pfEsporte = t*(2/8); pfInfancia = t*(1/8); pfIdoso = t*(1/8);
+          pfTotal = t;
+        }
       }
-      inp.style.borderColor = '';
 
-      let cultura, esporte, infancia;
-      if (userType === 'pj') {
-        cultura  = ir * 0.04;
-        esporte  = ir * 0.02;
-        infancia = ir * 0.01;
-      } else {
-        const t = ir * 0.06;
-        cultura  = t * (4/7);
-        esporte  = t * (2/7);
-        infancia = t * (1/7);
+      if (userType === 'pj' || userType === 'ambos') {
+        const ir = parseBRL(document.getElementById('irInputPJ').value);
+        if (ir <= 0) { markError('irInputPJ'); valid = false; }
+        else {
+          pjCultura = ir*0.04; pjEsporte = ir*0.02; pjInfancia = ir*0.01; pjIdoso = ir*0.01;
+          pjTotal = pjCultura + pjEsporte + pjInfancia + pjIdoso;
+        }
       }
-      maxTotal = cultura + esporte + infancia;
 
-      document.getElementById('totalDisplay').textContent  = fmtInt(maxTotal);
-      document.getElementById('culturaVal').textContent    = fmtInt(cultura);
-      document.getElementById('esporteVal').textContent    = fmtInt(esporte);
-      document.getElementById('infanciaVal').textContent   = fmtInt(infancia);
+      if (!valid) return;
 
-      document.getElementById('culturaTag').textContent  = userType === 'pj' ? '4% do IR · Lei Rouanet' : `${((cultura/ir)*100).toFixed(1)}% do IR`;
-      document.getElementById('esporteTag').textContent  = userType === 'pj' ? '2% do IR · Lei do Esporte' : `${((esporte/ir)*100).toFixed(1)}% do IR`;
-      document.getElementById('infanciaTag').textContent = userType === 'pj' ? '1% do IR · FIA' : `${((infancia/ir)*100).toFixed(1)}% do IR`;
+      maxTotal = pfTotal + pjTotal;
+      vals = { pfTotal, pjTotal, pjCultura, pjEsporte, pjInfancia, pjIdoso,
+               cultura: pfCultura+pjCultura, esporte: pfEsporte+pjEsporte,
+               infancia: pfInfancia+pjInfancia, idoso: pfIdoso+pjIdoso };
 
-      const msg = encodeURIComponent(`Olá! Fiz a simulação no site e posso destinar cerca de R$ ${formatBRL(maxTotal)}. Gostaria de apoiar esses projetos. Pode me orientar como fazer?`);
-      document.getElementById('waBtn').href = `https://wa.me/${WHATSAPP}?text=${msg}`;
-
+      renderResults();
+      setLinks();
       showStep('step3');
     }
 
-    // ── Copy for contador ───────────────────────────────────────────
+    function renderResults() {
+      document.getElementById('totalDisplay').textContent = fmtInt(maxTotal);
+
+      const showPF = userType === 'pf' || userType === 'ambos';
+      const showPJ = userType === 'pj' || userType === 'ambos';
+      document.getElementById('res-pf').classList.toggle('hidden', !showPF);
+      document.getElementById('res-pj').classList.toggle('hidden', !showPJ);
+      document.getElementById('res-combined').classList.toggle('hidden', userType !== 'ambos');
+
+      if (showPF) document.getElementById('pfTotal').textContent = fmtInt(vals.pfTotal);
+      if (showPJ) {
+        document.getElementById('pjTotal').textContent    = fmtInt(vals.pjTotal);
+        document.getElementById('pjCulturaVal').textContent  = fmtInt(vals.pjCultura);
+        document.getElementById('pjEsporteVal').textContent  = fmtInt(vals.pjEsporte);
+        document.getElementById('pjInfanciaVal').textContent = fmtInt(vals.pjInfancia);
+        document.getElementById('pjIdosoVal').textContent    = fmtInt(vals.pjIdoso);
+      }
+
+      document.getElementById('culturaVal').textContent  = fmtInt(vals.cultura);
+      document.getElementById('esporteVal').textContent  = fmtInt(vals.esporte);
+      document.getElementById('infanciaVal').textContent = fmtInt(vals.infancia);
+      document.getElementById('idosoVal').textContent    = fmtInt(vals.idoso);
+    }
+
+    function setLinks() {
+      const base = `https://wa.me/${WHATSAPP}?text=`;
+      const irVal = formatBRL(maxTotal);
+      document.getElementById('waBtn').href   = base + encodeURIComponent(`Olá! Fiz a simulação e posso direcionar cerca de R$ ${irVal} via Imposto de Renda. Também quero entender oportunidades com ICMS, ISS e IPTU. Pode me orientar?`);
+      document.getElementById('icmsBtn').href = base + encodeURIComponent(`Olá! Tenho interesse em verificar oportunidades de incentivo com ICMS. Pode me orientar?`);
+      document.getElementById('issBtn').href  = base + encodeURIComponent(`Olá! Tenho interesse em verificar incentivos municipais via ISS. Pode me orientar?`);
+      document.getElementById('iptuBtn').href = base + encodeURIComponent(`Olá! Tenho interesse em verificar oportunidades de incentivo com IPTU. Pode me orientar?`);
+    }
+
     function copyContador() {
-      const msg = `Olá, gostaria de fazer uma destinação via leis de incentivo fiscal (Rouanet, Esporte ou FIA). Você pode me orientar com base nesse valor estimado de R$ ${formatBRL(maxTotal)}?`;
+      const msg = `Olá, gostaria de fazer destinação via leis de incentivo fiscal (federal, estadual e municipal). Pode me orientar com base nesse valor estimado de R$ ${formatBRL(maxTotal)}?`;
       navigator.clipboard.writeText(msg).then(() => {
         const ok = document.getElementById('copyOk');
         ok.classList.remove('hidden');
@@ -425,17 +556,13 @@
       });
     }
 
-    // ── Restart ─────────────────────────────────────────────────────
     function restart() {
-      userType = null; maxTotal = 0;
-      document.getElementById('irInput').value = '';
+      userType = null; maxTotal = 0; vals = {};
+      ['irInputPF','irInputPJ'].forEach(id => { document.getElementById(id).value = ''; });
       showStep('step1');
     }
 
-    // ── Mobile nav ──────────────────────────────────────────────────
-    function closeMobileNav() {
-      document.getElementById('mobileNav').classList.add('hidden');
-    }
+    function closeMobileNav() { document.getElementById('mobileNav').classList.add('hidden'); }
 
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').style.boxShadow = window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,0.35)' : '';
