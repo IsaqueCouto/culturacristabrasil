@@ -373,7 +373,6 @@
       top: 50%;
       transform: translateY(-50%) rotate(-4deg);
       z-index: 1;
-      background: linear-gradient(160deg, #1a3a28 0%, #0d5236 40%, #1a7a50 100%);
     }
     .photo-card-2 {
       width: 215px;
@@ -382,7 +381,6 @@
       top: 50%;
       transform: translate(-50%, -52%) rotate(1.5deg);
       z-index: 3;
-      background: linear-gradient(160deg, #0e2a48 0%, #1a4a70 40%, #0d3d6b 100%);
     }
     .photo-card-3 {
       width: 195px;
@@ -391,7 +389,6 @@
       top: 50%;
       transform: translateY(-48%) rotate(5deg);
       z-index: 2;
-      background: linear-gradient(160deg, #2a1a0e 0%, #5a3010 40%, #8a4518 100%);
     }
     .photo-icon {
       position: absolute;
@@ -1369,67 +1366,21 @@
         <div class="hero-ring"></div>
         <div class="hero-ring-2"></div>
 
-        <!-- Card 1: Worship / green -->
+        <!-- Card 1 -->
         <div class="photo-card photo-card-1">
-          <div class="photo-icon">
-            <svg viewBox="0 0 64 64" fill="white">
-              <path d="M32 8C19.85 8 10 17.85 10 30c0 8.28 4.52 15.5 11.26 19.44L20 56h24l-1.26-6.56C49.48 45.5 54 38.28 54 30c0-12.15-9.85-22-22-22z" opacity="0.15"/>
-              <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-size="28" fill="rgba(255,255,255,0.2)">♪</text>
-            </svg>
-          </div>
-          <!-- Cross -->
-          <div class="cross-glow">
-            <svg viewBox="0 0 36 44" fill="none">
-              <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(81,208,129,0.7)"/>
-              <rect x="0" y="12" width="36" height="8" rx="2" fill="rgba(81,208,129,0.7)"/>
-            </svg>
-          </div>
+          <img src="assets/images/hero-1.jpg" alt="Adoração" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="photo-tag">Adoração</div>
         </div>
 
-        <!-- Card 2: Brazilian flag / center -->
+        <!-- Card 2 -->
         <div class="photo-card photo-card-2">
-          <div class="photo-icon">
-            <svg viewBox="0 0 64 64" fill="white" style="opacity:0.12; width:80px; height:80px;">
-              <ellipse cx="32" cy="22" rx="12" ry="14"/>
-              <path d="M14 56c0-9.94 8.06-18 18-18s18 8.06 18 18"/>
-            </svg>
-          </div>
-          <div class="brazil-flag-accent">
-            <div class="flag-green">
-              <div class="flag-yellow">
-                <div class="flag-blue"></div>
-              </div>
-            </div>
-          </div>
-          <div class="crowd-dots">
-            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
-            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
-            <div class="crowd-dot"></div><div class="crowd-dot"></div>
-          </div>
+          <img src="assets/images/hero-2.jpg" alt="Missão Brasil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="photo-tag">Missão Brasil</div>
         </div>
 
-        <!-- Card 3: Crowds / warm -->
+        <!-- Card 3 -->
         <div class="photo-card photo-card-3">
-          <div class="photo-icon">
-            <svg viewBox="0 0 64 64" fill="white" style="width:56px;height:56px;opacity:0.15">
-              <path d="M10 54c0-7.73 5.82-14 13-14a12.84 12.84 0 0 1 4.5.82M40 54c0-7.73-5.82-14-13-14"/>
-              <circle cx="27" cy="24" r="8"/>
-              <circle cx="46" cy="28" r="6"/>
-              <path d="M40 54c0-6.07 4.48-11 10-11"/>
-            </svg>
-          </div>
-          <div class="thumb-cross" style="opacity:0.12; top:30%;">
-            <svg viewBox="0 0 36 44" fill="none">
-              <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(255,163,0,0.8)"/>
-              <rect x="0" y="12" width="36" height="8" rx="2" fill="rgba(255,163,0,0.8)"/>
-            </svg>
-          </div>
-          <div class="crowd-dots" style="opacity:0.25">
-            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
-            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
-          </div>
+          <img src="assets/images/hero-3.jpg" alt="Congresso" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="photo-tag">Congresso</div>
         </div>
 
@@ -1522,12 +1473,12 @@
         <!-- Specialist 1 -->
         <div class="specialist-card">
           <div class="specialist-avatar">
-            <div class="avatar-inner avatar-1">
-              <span class="avatar-initials">CF</span>
+            <div class="avatar-inner">
+              <img src="assets/images/specialist-1.jpg" alt="Celso Pero" style="width:100%;height:100%;object-fit:cover;">
             </div>
           </div>
-          <h3 class="specialist-name">Celso Flor</h3>
-          <p class="specialist-role">Pastor Fundador</p>
+          <h3 class="specialist-name">Celso Pero</h3>
+          <p class="specialist-role">Produtor Cultural & Gestor</p>
           <div class="specialist-social">
             <div class="social-dot">
               <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
@@ -1541,12 +1492,12 @@
         <!-- Specialist 2 -->
         <div class="specialist-card">
           <div class="specialist-avatar">
-            <div class="avatar-inner avatar-2">
-              <span class="avatar-initials">SC</span>
+            <div class="avatar-inner">
+              <img src="assets/images/specialist-2.jpg" alt="Gianna Cardoso" style="width:100%;height:100%;object-fit:cover;">
             </div>
           </div>
-          <h3 class="specialist-name">Simone Cardoso</h3>
-          <p class="specialist-role">Coordenadora de Ministério</p>
+          <h3 class="specialist-name">Gianna Cardoso</h3>
+          <p class="specialist-role">Advogada & Produtora Cultural</p>
           <div class="specialist-social">
             <div class="social-dot">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1560,12 +1511,12 @@
         <!-- Specialist 3 -->
         <div class="specialist-card">
           <div class="specialist-avatar">
-            <div class="avatar-inner avatar-3">
-              <span class="avatar-initials">PJ</span>
+            <div class="avatar-inner">
+              <img src="assets/images/specialist-3.jpg" alt="Pastor Jair Stack" style="width:100%;height:100%;object-fit:cover;">
             </div>
           </div>
-          <h3 class="specialist-name">Pedro de Jesus</h3>
-          <p class="specialist-role">Teólogo & Conferencista</p>
+          <h3 class="specialist-name">Pastor Jair Stack</h3>
+          <p class="specialist-role">Produtor Cultural & Compositor</p>
           <div class="specialist-social">
             <div class="social-dot">
               <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
@@ -1579,12 +1530,12 @@
         <!-- Specialist 4 -->
         <div class="specialist-card">
           <div class="specialist-avatar">
-            <div class="avatar-inner avatar-4">
-              <span class="avatar-initials">HC</span>
+            <div class="avatar-inner">
+              <img src="assets/images/specialist-4.jpg" alt="Nando Cardoso" style="width:100%;height:100%;object-fit:cover;">
             </div>
           </div>
-          <h3 class="specialist-name">Humberto Cardoso</h3>
-          <p class="specialist-role">Diretor de Comunicação</p>
+          <h3 class="specialist-name">Nando Cardoso</h3>
+          <p class="specialist-role">Professor & Artes Visuais</p>
           <div class="specialist-social">
             <div class="social-dot">
               <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
