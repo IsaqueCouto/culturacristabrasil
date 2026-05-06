@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultura Cristã Brasil</title>
+  <style>
+    /* ─── FONTS ─────────────────────────────────────────────── */
+    @font-face {
+      font-family: 'Mundial';
+      src: url('assets/fonts/MundialLight.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Mundial';
+      src: url('assets/fonts/MundialRegular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Mundial';
+      src: url('assets/fonts/MundialDemibold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Mundial';
+      src: url('assets/fonts/MundialBold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Mundial';
+      src: url('assets/fonts/MundialBlack.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Toska';
+      src: url('assets/fonts/Toska-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Toska';
+      src: url('assets/fonts/Toska-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    /* ─── RESET & BASE ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #102a37;
+      --navy-deep:   #0b1e29;
+      --teal:        #266882;
+      --teal-light:  #3598b9;
+      --teal-pale:   #58b6e7;
+      --green-start: #178e64;
+      --green-end:   #51d081;
+      --orange:      #ffa300;
+      --orange-light:#ffcc44;
+      --white:       #e8f4fb;
+      --off-white:   #d6ecf7;
+      --gray-light:  #c2dff0;
+      --gray:        #8fa4af;
+      --text-dark:   #0e2230;
+      --text-body:   #3a5060;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Mundial', 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── UTILITIES ──────────────────────────────────────────── */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--teal), var(--teal-pale));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-end);
+      margin-bottom: 14px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-start), var(--green-end));
+      border-radius: 2px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      border: 2px solid transparent;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: var(--white);
+      border-color: transparent;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--teal-light), var(--teal-pale));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(53,152,185,0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-teal-outline {
+      background: transparent;
+      color: var(--teal);
+      border-color: var(--teal);
+    }
+    .btn-teal-outline:hover {
+      background: var(--teal);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(38,104,130,0.3);
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(16, 42, 55, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      transition: box-shadow 0.3s;
+    }
+    .navbar.scrolled {
+      box-shadow: 0 4px 30px rgba(0,0,0,0.35);
+    }
+    .nav-inner {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      height: 36px;
+      width: auto;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 400;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.78);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.07);
+    }
+    .nav-links a.active {
+      color: var(--green-end);
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-lang {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 5px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: none;
+    }
+    .nav-lang:hover {
+      border-color: rgba(255,255,255,0.4);
+      color: var(--white);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background-color: var(--navy);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(38,104,130,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(23,142,100,0.08) 0%, transparent 55%);
+      min-height: 100vh;
+      padding-top: 68px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 1;
+      pointer-events: none;
+    }
+    .hero-inner {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 60px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-content {
+      animation: fadeInUp 0.9s ease both;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(81,208,129,0.1);
+      border: 1px solid rgba(81,208,129,0.25);
+      border-radius: 20px;
+      padding: 5px 14px 5px 10px;
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green-end);
+      box-shadow: 0 0 8px var(--green-end);
+      animation: pulse 2s infinite;
+    }
+    .hero-badge span {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-end);
+    }
+    .hero-title {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    .hero-title .line-accent {
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,0.35);
+    }
+    .hero-title .line-teal {
+      background: linear-gradient(90deg, var(--teal-light), var(--teal-pale));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      max-width: 440px;
+      margin-bottom: 36px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .hero-actions .btn-primary svg,
+    .hero-actions .btn-outline svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Hero Photos */
+    .hero-visual {
+      position: relative;
+      height: 520px;
+      animation: fadeIn 1.1s ease 0.3s both;
+    }
+    .photo-card {
+      position: absolute;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.45) 100%);
+    }
+    .photo-card-1 {
+      width: 195px;
+      height: 270px;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(-4deg);
+      z-index: 1;
+      background: linear-gradient(160deg, #1a3a28 0%, #0d5236 40%, #1a7a50 100%);
+    }
+    .photo-card-2 {
+      width: 215px;
+      height: 300px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -52%) rotate(1.5deg);
+      z-index: 3;
+      background: linear-gradient(160deg, #0e2a48 0%, #1a4a70 40%, #0d3d6b 100%);
+    }
+    .photo-card-3 {
+      width: 195px;
+      height: 270px;
+      right: 0;
+      top: 50%;
+      transform: translateY(-48%) rotate(5deg);
+      z-index: 2;
+      background: linear-gradient(160deg, #2a1a0e 0%, #5a3010 40%, #8a4518 100%);
+    }
+    .photo-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .photo-icon svg {
+      opacity: 0.25;
+      width: 64px;
+      height: 64px;
+    }
+    .photo-tag {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      z-index: 2;
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+    }
+    .photo-card-1 .photo-silhouette {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .person-silhouette {
+      width: 70%;
+      opacity: 0.18;
+    }
+    .brazil-flag-accent {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 28px;
+      height: 20px;
+      border-radius: 3px;
+      overflow: hidden;
+      z-index: 2;
+    }
+    .flag-green { background: #009c3b; width: 100%; height: 100%; position: relative; }
+    .flag-yellow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 14px;
+      background: #ffdf00;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+    .flag-blue {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: #002776;
+      border-radius: 50%;
+    }
+    .cross-glow {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .cross-glow svg {
+      width: 36px;
+      height: 44px;
+      filter: drop-shadow(0 0 12px rgba(81,208,129,0.6));
+    }
+    .crowd-dots {
+      position: absolute;
+      bottom: 40px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+      z-index: 2;
+      opacity: 0.3;
+    }
+    .crowd-dot {
+      width: 6px;
+      height: 10px;
+      border-radius: 3px 3px 2px 2px;
+      background: var(--white);
+    }
+    /* decorative ring */
+    .hero-ring {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.04);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+    .hero-ring-2 {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      border: 1px solid rgba(53,152,185,0.1);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeInUp 1s ease 1.5s both;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    .about {
+      background: var(--white);
+      padding: 100px 40px;
+    }
+    .about-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-content {}
+    .about-title {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .about-title .big-line {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1;
+      display: block;
+    }
+    .about-title .sub-line {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--navy);
+      line-height: 1.1;
+      display: block;
+      margin-top: 4px;
+    }
+    .about-divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-start), var(--green-end));
+      border-radius: 2px;
+      margin: 20px 0 22px;
+    }
+    .about-text {
+      font-size: 0.97rem;
+      line-height: 1.78;
+      color: var(--text-body);
+      margin-bottom: 16px;
+    }
+    .about-text + .about-text {
+      margin-bottom: 32px;
+    }
+    .about-image {
+      position: relative;
+      height: 460px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--navy) 0%, #1a4a5e 50%, #0f3345 100%);
+      box-shadow: 0 30px 70px rgba(16,42,55,0.22), 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .about-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 40% at 50% 30%, rgba(53,152,185,0.15) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 60% at 50% 100%, rgba(16,42,55,0.7) 0%, transparent 60%);
+    }
+    .auditorium-visual {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .auditorium-rows {
+      width: 85%;
+      opacity: 0.22;
+    }
+    .auditorium-light {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent 80%);
+    }
+    .auditorium-spotlight {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 300px;
+      background: conic-gradient(from 170deg at 50% 0%, transparent 0%, rgba(255,220,100,0.07) 15%, transparent 30%);
+    }
+    .about-image-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(16,42,55,0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 8px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .about-image-tag strong {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .about-image-tag span {
+      font-size: 0.72rem;
+      color: var(--teal-pale);
+    }
+    .about-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-num {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--green-start), var(--green-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--gray);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ─── ESPECIALISTAS ──────────────────────────────────────── */
+    .especialistas {
+      background: var(--navy);
+      background-image:
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(38,104,130,0.18) 0%, transparent 60%);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .especialistas::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(81,208,129,0.3), transparent);
+    }
+    .especialistas-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .especialistas-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .especialistas-title {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .especialistas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .specialist-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 36px 20px 28px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .specialist-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(53,152,185,0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .specialist-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      position: relative;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .specialist-avatar::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-start), var(--teal-light));
+      z-index: 0;
+    }
+    .avatar-inner {
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-1 { background: linear-gradient(160deg, #2d5a3d, #1a4a2a); }
+    .avatar-2 { background: linear-gradient(160deg, #5a2d3d, #4a1a2a); }
+    .avatar-3 { background: linear-gradient(160deg, #2d3d5a, #1a2a4a); }
+    .avatar-4 { background: linear-gradient(160deg, #3d2d5a, #2a1a4a); }
+    .avatar-initials {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: -0.02em;
+    }
+    .specialist-name {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+    .specialist-role {
+      font-size: 0.78rem;
+      color: var(--teal-pale);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+    .specialist-social {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .social-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .social-dot:hover {
+      background: rgba(53,152,185,0.2);
+      border-color: var(--teal-light);
+    }
+    .social-dot svg {
+      width: 12px;
+      height: 12px;
+      fill: rgba(255,255,255,0.5);
+    }
+
+    /* ─── PARCEIROS ──────────────────────────────────────────── */
+    .parceiros {
+      background: var(--off-white);
+      padding: 80px 40px;
+    }
+    .parceiros-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .parceiros-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .parceiros-title {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: 1.7rem;
+      color: var(--navy);
+    }
+    .parceiros-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(38,104,130,0.3) transparent;
+    }
+    .parceiros-track::-webkit-scrollbar {
+      height: 3px;
+    }
+    .parceiros-track::-webkit-scrollbar-thumb {
+      background: rgba(38,104,130,0.3);
+      border-radius: 2px;
+    }
+    .partner-logo {
+      flex-shrink: 0;
+      width: 130px;
+      height: 72px;
+      background: var(--white);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .partner-logo:hover {
+      border-color: rgba(38,104,130,0.3);
+      box-shadow: 0 4px 20px rgba(38,104,130,0.12);
+      transform: translateY(-2px);
+    }
+    .partner-abbr {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      color: var(--teal);
+    }
+
+    /* ─── ACOMPANHE ──────────────────────────────────────────── */
+    .acompanhe {
+      background: var(--white);
+      padding: 100px 40px;
+    }
+    .acompanhe-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .acompanhe-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 44px;
+    }
+    .acompanhe-heading {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      color: var(--navy);
+    }
+    .acompanhe-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: var(--white);
+      border-radius: 24px;
+      padding: 8px 18px;
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .acompanhe-badge svg {
+      width: 14px;
+      height: 14px;
+    }
+    .acompanhe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .video-card {
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+    }
+    .video-thumb {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    .video-thumb-bg {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+    .video-card:hover .video-thumb-bg {
+      transform: scale(1.05);
+    }
+    .thumb-1 { background: linear-gradient(135deg, #0b2535 0%, #1a4a6a 50%, #0f3550 100%); }
+    .thumb-2 { background: linear-gradient(135deg, #1a2a0e 0%, #2a5020 50%, #0f3010 100%); }
+    .thumb-3 { background: linear-gradient(135deg, #2a0e1a 0%, #50203a 50%, #3a0f25 100%); }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      border: 2px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s;
+      z-index: 2;
+    }
+    .video-card:hover .play-btn {
+      background: rgba(53,152,185,0.5);
+      border-color: var(--white);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .play-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--white);
+      margin-left: 3px;
+    }
+    .video-duration {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      background: rgba(0,0,0,0.65);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+    .video-info {
+      padding: 16px 18px 20px;
+    }
+    .video-cat {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 6px;
+    }
+    .video-title {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.97rem;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .video-meta {
+      font-size: 0.72rem;
+      color: var(--gray);
+    }
+    .thumb-cross {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-68%);
+      opacity: 0.12;
+    }
+    .thumb-cross svg { width: 70px; height: 85px; }
+
+    /* ─── FALE CONOSCO ───────────────────────────────────────── */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .contact-left {
+      background: var(--navy);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 10% 50%, rgba(38,104,130,0.25) 0%, transparent 60%);
+      padding: 90px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contact-heading {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .contact-sub {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 44px;
+      line-height: 1.65;
+    }
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--teal-pale);
+      fill: none;
+    }
+    .contact-item-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal-pale);
+      margin-bottom: 3px;
+    }
+    .contact-item-value {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+    .contact-right {
+      background: var(--white);
+      padding: 90px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .form-title {
+      font-family: 'Mundial', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 28px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-body);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      font-family: 'Mundial', sans-serif;
+      font-size: 0.88rem;
+      padding: 12px 14px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 6px;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--teal-light);
+      box-shadow: 0 0 0 3px rgba(53,152,185,0.12);
+    }
+    .form-group textarea {
+      height: 110px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: var(--white);
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .btn-submit:hover {
+      background: linear-gradient(135deg, var(--teal-light), var(--teal-pale));
+      box-shadow: 0 8px 24px rgba(53,152,185,0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--navy-deep);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 56px 40px 28px;
+    }
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 32px;
+    }
+    .footer-logo { height: 32px; }
+    .footer-nav {
+      display: flex;
+      gap: 6px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-nav a {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 3px;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: rgba(255,255,255,0.8); }
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+    }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      background: rgba(53,152,185,0.15);
+      border-color: rgba(53,152,185,0.4);
+    }
+    .social-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: rgba(255,255,255,0.5);
+      transition: fill 0.2s;
+    }
+    .social-btn:hover svg { fill: rgba(255,255,255,0.9); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-tagline {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.2);
+      font-style: italic;
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 6px var(--green-end); opacity: 1; }
+      50%       { box-shadow: 0 0 14px var(--green-end); opacity: 0.7; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 0.7; transform: scaleY(1.15); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(-50%) rotate(-4deg); }
+      50%       { transform: translateY(-53%) rotate(-4deg); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translate(-50%, -52%) rotate(1.5deg); }
+      50%       { transform: translate(-50%, -55%) rotate(1.5deg); }
+    }
+    @keyframes float3 {
+      0%, 100% { transform: translateY(-48%) rotate(5deg); }
+      50%       { transform: translateY(-51%) rotate(5deg); }
+    }
+    .photo-card-1 { animation: float 5s ease-in-out infinite; }
+    .photo-card-2 { animation: float2 6s ease-in-out infinite 0.5s; }
+    .photo-card-3 { animation: float3 5.5s ease-in-out infinite 1s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .especialistas-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-inner { gap: 40px; }
+      .about-inner { gap: 50px; }
+    }
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content { order: 1; }
+      .hero-visual { order: 2; height: 300px; }
+      .hero-desc { margin: 0 auto 36px; }
+      .hero-actions { justify-content: center; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-image { height: 320px; }
+      .contact { grid-template-columns: 1fr; }
+      .contact-left, .contact-right { padding: 60px 32px; }
+      .footer-top { flex-direction: column; gap: 28px; text-align: center; }
+    }
+    @media (max-width: 640px) {
+      .about, .acompanhe, .especialistas, .parceiros { padding: 70px 20px; }
+      .navbar { padding: 0 20px; }
+      .hero-inner { padding: 40px 20px 60px; }
+      .acompanhe-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .especialistas-grid { grid-template-columns: 1fr 1fr; }
+      .footer { padding: 40px 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="nav-logo">
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#especialistas">Especialistas</a></li>
+        <li><a href="#parceiros">Parceiros</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-lang">PT | EN</button>
+        <div class="nav-hamburger" onclick="this.classList.toggle('open')">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ══════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+
+      <!-- Left Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>Cultura Cristã Brasil</span>
+        </div>
+        <h1 class="hero-title">
+          ESTRATÉGIA<br>
+          <span class="line-teal">VISÃO</span><br>
+          CHAMADO
+        </h1>
+        <p class="hero-desc">
+          Equipando líderes e igrejas com recursos teológicos sólidos,
+          estratégias ministeriais eficazes e uma visão transformadora
+          para o Brasil e o mundo.
+        </p>
+        <div class="hero-actions">
+          <a href="#sobre" class="btn btn-primary">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 1v14M1 8l7 7 7-7"/>
+            </svg>
+            Saiba Mais
+          </a>
+          <a href="#blog" class="btn btn-outline">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+              <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M6 5.5l5 2.5-5 2.5V5.5z"/>
+            </svg>
+            Assista Agora
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Visual — 3 overlapping photos -->
+      <div class="hero-visual">
+        <div class="hero-ring"></div>
+        <div class="hero-ring-2"></div>
+
+        <!-- Card 1: Worship / green -->
+        <div class="photo-card photo-card-1">
+          <div class="photo-icon">
+            <svg viewBox="0 0 64 64" fill="white">
+              <path d="M32 8C19.85 8 10 17.85 10 30c0 8.28 4.52 15.5 11.26 19.44L20 56h24l-1.26-6.56C49.48 45.5 54 38.28 54 30c0-12.15-9.85-22-22-22z" opacity="0.15"/>
+              <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-size="28" fill="rgba(255,255,255,0.2)">♪</text>
+            </svg>
+          </div>
+          <!-- Cross -->
+          <div class="cross-glow">
+            <svg viewBox="0 0 36 44" fill="none">
+              <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(81,208,129,0.7)"/>
+              <rect x="0" y="12" width="36" height="8" rx="2" fill="rgba(81,208,129,0.7)"/>
+            </svg>
+          </div>
+          <div class="photo-tag">Adoração</div>
+        </div>
+
+        <!-- Card 2: Brazilian flag / center -->
+        <div class="photo-card photo-card-2">
+          <div class="photo-icon">
+            <svg viewBox="0 0 64 64" fill="white" style="opacity:0.12; width:80px; height:80px;">
+              <ellipse cx="32" cy="22" rx="12" ry="14"/>
+              <path d="M14 56c0-9.94 8.06-18 18-18s18 8.06 18 18"/>
+            </svg>
+          </div>
+          <div class="brazil-flag-accent">
+            <div class="flag-green">
+              <div class="flag-yellow">
+                <div class="flag-blue"></div>
+              </div>
+            </div>
+          </div>
+          <div class="crowd-dots">
+            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
+            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
+            <div class="crowd-dot"></div><div class="crowd-dot"></div>
+          </div>
+          <div class="photo-tag">Missão Brasil</div>
+        </div>
+
+        <!-- Card 3: Crowds / warm -->
+        <div class="photo-card photo-card-3">
+          <div class="photo-icon">
+            <svg viewBox="0 0 64 64" fill="white" style="width:56px;height:56px;opacity:0.15">
+              <path d="M10 54c0-7.73 5.82-14 13-14a12.84 12.84 0 0 1 4.5.82M40 54c0-7.73-5.82-14-13-14"/>
+              <circle cx="27" cy="24" r="8"/>
+              <circle cx="46" cy="28" r="6"/>
+              <path d="M40 54c0-6.07 4.48-11 10-11"/>
+            </svg>
+          </div>
+          <div class="thumb-cross" style="opacity:0.12; top:30%;">
+            <svg viewBox="0 0 36 44" fill="none">
+              <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(255,163,0,0.8)"/>
+              <rect x="0" y="12" width="36" height="8" rx="2" fill="rgba(255,163,0,0.8)"/>
+            </svg>
+          </div>
+          <div class="crowd-dots" style="opacity:0.25">
+            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
+            <div class="crowd-dot"></div><div class="crowd-dot"></div><div class="crowd-dot"></div>
+          </div>
+          <div class="photo-tag">Congresso</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Rolar</span>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═════════════════════════════════════════════════ -->
+  <section class="about" id="sobre">
+    <div class="about-inner">
+      <div class="about-content">
+        <span class="section-label">Sobre Nós</span>
+        <h2 class="about-title">
+          <span class="big-line gradient-text">CULTURA</span>
+          <span class="sub-line">Cristã Brasil!</span>
+        </h2>
+        <div class="about-divider"></div>
+        <p class="about-text">
+          A Cultura Cristã Brasil é um ministério dedicado a fortalecer a identidade
+          cristã no contexto brasileiro, promovendo formação teológica, liderança
+          ministerial e reflexão cultural à luz do Evangelho.
+        </p>
+        <p class="about-text">
+          Com uma equipe de especialistas em teologia, psicologia e comunicação,
+          oferecemos recursos, eventos e conteúdo digital para igrejas, pastores
+          e líderes em todo o Brasil.
+        </p>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-num">15+</span>
+            <span class="stat-label">Anos de Ministério</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">200k</span>
+            <span class="stat-label">Seguidores</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">Igrejas Parceiras</span>
+          </div>
+        </div>
+        <a href="#especialistas" class="btn btn-teal-outline">Leia Mais</a>
+      </div>
+
+      <div class="about-image">
+        <div class="auditorium-spotlight"></div>
+        <div class="auditorium-light"></div>
+        <div class="auditorium-visual">
+          <!-- Stylized auditorium rows -->
+          <svg class="auditorium-rows" viewBox="0 0 320 200" fill="none">
+            <!-- Rows of seats -->
+            <g fill="rgba(255,255,255,0.6)">
+              <ellipse cx="160" cy="185" rx="155" ry="8"/>
+              <ellipse cx="160" cy="165" rx="135" ry="7"/>
+              <ellipse cx="160" cy="147" rx="118" ry="6"/>
+              <ellipse cx="160" cy="131" rx="102" ry="5.5"/>
+              <ellipse cx="160" cy="117" rx="88" ry="5"/>
+              <ellipse cx="160" cy="105" rx="75" ry="4.5"/>
+              <ellipse cx="160" cy="94" rx="63" ry="4"/>
+              <ellipse cx="160" cy="85" rx="52" ry="3.5"/>
+              <!-- Stage -->
+              <rect x="60" y="30" width="200" height="40" rx="4" opacity="0.4"/>
+              <rect x="130" y="10" width="60" height="20" rx="3" opacity="0.6"/>
+            </g>
+          </svg>
+        </div>
+        <div class="about-image-tag">
+          <strong>Congresso Nacional CCB 2024</strong>
+          <span>São Paulo, Brasil · 12.000 participantes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ESPECIALISTAS ═════════════════════════════════════════ -->
+  <section class="especialistas" id="especialistas">
+    <div class="especialistas-inner">
+      <div class="especialistas-header">
+        <span class="section-label" style="justify-content:center">Nossa Equipe</span>
+        <h2 class="especialistas-title">Conheça nossos<br>Especialistas</h2>
+      </div>
+
+      <div class="especialistas-grid">
+
+        <!-- Specialist 1 -->
+        <div class="specialist-card">
+          <div class="specialist-avatar">
+            <div class="avatar-inner avatar-1">
+              <span class="avatar-initials">CF</span>
+            </div>
+          </div>
+          <h3 class="specialist-name">Celso Flor</h3>
+          <p class="specialist-role">Pastor Fundador</p>
+          <div class="specialist-social">
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+            </div>
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialist 2 -->
+        <div class="specialist-card">
+          <div class="specialist-avatar">
+            <div class="avatar-inner avatar-2">
+              <span class="avatar-initials">SC</span>
+            </div>
+          </div>
+          <h3 class="specialist-name">Simone Cardoso</h3>
+          <p class="specialist-role">Coordenadora de Ministério</p>
+          <div class="specialist-social">
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialist 3 -->
+        <div class="specialist-card">
+          <div class="specialist-avatar">
+            <div class="avatar-inner avatar-3">
+              <span class="avatar-initials">PJ</span>
+            </div>
+          </div>
+          <h3 class="specialist-name">Pedro de Jesus</h3>
+          <p class="specialist-role">Teólogo & Conferencista</p>
+          <div class="specialist-social">
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+            </div>
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialist 4 -->
+        <div class="specialist-card">
+          <div class="specialist-avatar">
+            <div class="avatar-inner avatar-4">
+              <span class="avatar-initials">HC</span>
+            </div>
+          </div>
+          <h3 class="specialist-name">Humberto Cardoso</h3>
+          <p class="specialist-role">Diretor de Comunicação</p>
+          <div class="specialist-social">
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </div>
+            <div class="social-dot">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PARCEIROS ════════════════════════════════════════════ -->
+  <section class="parceiros" id="parceiros">
+    <div class="parceiros-inner">
+      <div class="parceiros-header">
+        <span class="section-label" style="justify-content:center">Parceiros</span>
+        <h2 class="parceiros-title">Quem Caminha Conosco</h2>
+      </div>
+      <div class="parceiros-track">
+        <div class="partner-logo"><span class="partner-abbr">IBB</span></div>
+        <div class="partner-logo"><span class="partner-abbr">CPAD</span></div>
+        <div class="partner-logo"><span class="partner-abbr">SEJAM</span></div>
+        <div class="partner-logo"><span class="partner-abbr">FTSA</span></div>
+        <div class="partner-logo"><span class="partner-abbr">MBB</span></div>
+        <div class="partner-logo"><span class="partner-abbr">IBEL</span></div>
+        <div class="partner-logo"><span class="partner-abbr">ATED</span></div>
+        <div class="partner-logo"><span class="partner-abbr">RCCB</span></div>
+        <div class="partner-logo"><span class="partner-abbr">IGER</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ACOMPANHE ════════════════════════════════════════════ -->
+  <section class="acompanhe" id="blog">
+    <div class="acompanhe-inner">
+      <div class="acompanhe-header">
+        <h2 class="acompanhe-heading">Acompanhe</h2>
+        <div class="acompanhe-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          Últimos Conteúdos
+        </div>
+      </div>
+      <div class="acompanhe-grid">
+
+        <!-- Video 1 -->
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-thumb-bg thumb-1"></div>
+            <div class="thumb-cross">
+              <svg viewBox="0 0 36 44" fill="none">
+                <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(88,182,231,0.3)"/>
+                <rect x="0" y="12" width="36" height="8" rx="2" fill="rgba(88,182,231,0.3)"/>
+              </svg>
+            </div>
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-duration">28:14</div>
+          </div>
+          <div class="video-info">
+            <span class="video-cat">Teologia</span>
+            <h3 class="video-title">A Identidade Cristã no Brasil Contemporâneo</h3>
+            <span class="video-meta">15 de Abril, 2026 · Celso Flor</span>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-thumb-bg thumb-2"></div>
+            <div class="thumb-cross" style="top:35%">
+              <svg viewBox="0 0 36 44" fill="none">
+                <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(81,208,129,0.25)"/>
+                <rect x="0" y="12" width="36" height="8" rx="2" fill="rgba(81,208,129,0.25)"/>
+              </svg>
+            </div>
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-duration">44:32</div>
+          </div>
+          <div class="video-info">
+            <span class="video-cat">Liderança</span>
+            <h3 class="video-title">Formando Líderes para a Igreja do Século XXI</h3>
+            <span class="video-meta">8 de Abril, 2026 · Pedro de Jesus</span>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-thumb-bg thumb-3"></div>
+            <div class="thumb-cross" style="top:30%">
+              <svg viewBox="0 0 36 44" fill="none">
+                <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(255,163,0,0.25)"/>
+                <rect x="0" y="12" width="36" height="8" rx="2" fill="rgba(255,163,0,0.25)"/>
+              </svg>
+            </div>
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-duration">1:02:15</div>
+          </div>
+          <div class="video-info">
+            <span class="video-cat">Congresso</span>
+            <h3 class="video-title">CCB Congresso 2024 — Sessão de Abertura</h3>
+            <span class="video-meta">1 de Abril, 2026 · Equipe CCB</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FALE CONOSCO ══════════════════════════════════════════ -->
+  <section class="contact" id="contato">
+    <div class="contact-left">
+      <span class="section-label">Contato</span>
+      <h2 class="contact-heading">Fale<br>Conosco</h2>
+      <p class="contact-sub">
+        Estamos prontos para atender pastores, líderes e igrejas.
+        Entre em contato e descubra como podemos caminhar juntos.
+      </p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="contact-item-label">Telefone</p>
+            <p class="contact-item-value">+55 (11) 3456-7890<br>+55 (11) 98765-4321</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="contact-item-label">E-mail</p>
+            <p class="contact-item-value">contato@culturacristabrasil.com.br<br>ministerio@ccbrasil.org</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="contact-item-label">Endereço</p>
+            <p class="contact-item-value">Av. Paulista, 1000 — Bela Vista<br>São Paulo, SP · CEP 01310-100</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <h3 class="form-title">Envie uma mensagem</h3>
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Seu nome completo">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seu@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="assunto">Assunto</label>
+          <input type="text" id="assunto" placeholder="Como podemos ajudar?">
+        </div>
+        <div class="form-group">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar Mensagem</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="footer-logo">
+        <ul class="footer-nav">
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#especialistas">Especialistas</a></li>
+          <li><a href="#parceiros">Parceiros</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+        <div class="footer-socials">
+          <!-- YouTube -->
+          <a href="#" class="social-btn" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Cultura Cristã Brasil. Todos os direitos reservados.</p>
+        <p class="footer-tagline">"A fé move montanhas e transforma culturas."</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Smooth active nav link highlight
+    const sections = document.querySelectorAll('section[id], footer');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + entry.target.id) {
+              a.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.4, rootMargin: '-68px 0px 0px 0px' });
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.specialist-card, .video-card, .about-image, .partner-logo');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = entry.target.style.transform.replace('translateY(24px)', 'translateY(0)');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = (el.style.transform || '') + ' translateY(24px)';
+      el.style.transition = `opacity 0.6s ease ${i * 0.07}s, transform 0.6s ease ${i * 0.07}s, box-shadow 0.3s, border-color 0.3s`;
+      revealObserver.observe(el);
+    });
+  </script>
+
+</body>
+</html>
