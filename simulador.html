@@ -3,1131 +3,444 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulador Lei Rouanet — Cultura Cristã Brasil</title>
+  <title>Simulador de Incentivo Fiscal — Cultura Cristã Brasil</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Mundial', 'Helvetica Neue', 'sans-serif'],
+            toska: ['Toska', 'Georgia', 'serif'],
+          },
+          colors: {
+            navy:          '#102a37',
+            'navy-deep':   '#0b1e29',
+            teal:          '#266882',
+            'teal-light':  '#3598b9',
+            'teal-pale':   '#58b6e7',
+            'teal-soft':   '#e1f0f8',
+            'ccb-white':   '#e8f4fb',
+            'green-brand': '#51d081',
+            'green-dark':  '#178e64',
+            'green-soft':  '#e4f5ec',
+            orange:        '#ffa300',
+            'text-dark':   '#0e2230',
+            'text-body':   '#3a5060',
+            'text-muted':  '#5e7a8a',
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    /* ─── FONTS ─────────────────────────────────────────────── */
-    @font-face {
-      font-family: 'Mundial';
-      src: url('assets/fonts/MundialLight.otf') format('opentype');
-      font-weight: 300; font-style: normal;
-    }
-    @font-face {
-      font-family: 'Mundial';
-      src: url('assets/fonts/MundialRegular.otf') format('opentype');
-      font-weight: 400; font-style: normal;
-    }
-    @font-face {
-      font-family: 'Mundial';
-      src: url('assets/fonts/MundialDemibold.otf') format('opentype');
-      font-weight: 600; font-style: normal;
-    }
-    @font-face {
-      font-family: 'Mundial';
-      src: url('assets/fonts/MundialBold.otf') format('opentype');
-      font-weight: 700; font-style: normal;
-    }
-    @font-face {
-      font-family: 'Mundial';
-      src: url('assets/fonts/MundialBlack.otf') format('opentype');
-      font-weight: 900; font-style: normal;
-    }
-    @font-face {
-      font-family: 'Toska';
-      src: url('assets/fonts/Toska-Regular.otf') format('opentype');
-      font-weight: 400; font-style: normal;
-    }
-    @font-face {
-      font-family: 'Toska';
-      src: url('assets/fonts/Toska-Bold.otf') format('opentype');
-      font-weight: 700; font-style: normal;
-    }
-
-    /* ─── RESET & BASE ───────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --navy:        #102a37;
-      --navy-deep:   #0b1e29;
-      --teal:        #266882;
-      --teal-light:  #3598b9;
-      --teal-pale:   #58b6e7;
-      --teal-soft:   #e1f0f8;
-      --green-start: #178e64;
-      --green-end:   #51d081;
-      --green-soft:  #e4f5ec;
-      --orange:      #ffa300;
-      --orange-soft: #fff3d6;
-      --white:       #e8f4fb;
-      --off-white:   #d6ecf7;
-      --line:        #c2dff0;
-      --line-strong: #8fa4af;
-      --text-dark:   #0e2230;
-      --text-body:   #3a5060;
-      --text-muted:  #5e7a8a;
-      --shadow-sm:   0 1px 3px rgba(16,42,55,0.06), 0 1px 2px rgba(16,42,55,0.04);
-      --shadow-md:   0 4px 16px rgba(16,42,55,0.08), 0 2px 4px rgba(16,42,55,0.04);
-      --shadow-lg:   0 12px 40px rgba(16,42,55,0.12), 0 4px 8px rgba(16,42,55,0.04);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Mundial', 'Helvetica Neue', sans-serif;
-      font-weight: 400;
-      color: var(--text-dark);
-      background: var(--white);
-      min-height: 100vh;
-    }
-
-    /* ─── NAVBAR ─────────────────────────────────────────────── */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(16, 42, 55, 0.97);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      height: 68px;
-      display: flex;
-      align-items: center;
-      padding: 0 40px;
-      transition: box-shadow 0.3s;
-    }
-    .navbar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.35); }
-    .nav-inner {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo { height: 36px; width: auto; flex-shrink: 0; }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: 'Mundial', sans-serif;
-      font-weight: 400;
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.78);
-      text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-    }
-    .nav-links a:hover {
-      color: #e8f4fb;
-      background: rgba(255,255,255,0.07);
-    }
-    .nav-links a.active { color: #51d081; }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    .nav-lang {
-      font-family: 'Mundial', sans-serif;
-      font-weight: 700;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.5);
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 5px 12px;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: none;
-    }
-    .nav-lang:hover { border-color: rgba(255,255,255,0.4); color: #e8f4fb; }
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #e8f4fb;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* ─── PAGE HEADER ────────────────────────────────────────── */
-    .page-header {
-      background: var(--navy);
-      background-image:
-        radial-gradient(ellipse 70% 80% at 80% 50%, rgba(38,104,130,0.25) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(23,142,100,0.08) 0%, transparent 55%);
-      padding: 108px 40px 64px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .page-header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-    .page-header-inner {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .header-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Mundial', sans-serif;
-      font-weight: 700;
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #51d081;
-      margin-bottom: 20px;
-    }
-    .header-eyebrow::before {
-      content: '';
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: linear-gradient(90deg, #178e64, #51d081);
-      border-radius: 2px;
-    }
-    .page-header h1 {
-      font-family: 'Toska', Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.1;
-      color: #e8f4fb;
-      margin-bottom: 20px;
-    }
-    .page-header h1 em {
-      font-style: italic;
-      background: linear-gradient(135deg, var(--teal-light), var(--teal-pale));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .page-header p {
-      color: rgba(232,244,251,0.75);
-      font-size: 17px;
-      line-height: 1.65;
-      max-width: 580px;
-      margin: 0 auto;
-    }
-
-    /* ─── MAIN CONTENT ───────────────────────────────────────── */
-    .container {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 56px 24px 96px;
-    }
-
-    /* ─── PROGRESS ───────────────────────────────────────────── */
-    .progress {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-    .progress-step {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      font-weight: 500;
-    }
-    .progress-dot {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: white;
-      border: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--text-muted);
-      transition: all 0.3s;
-    }
-    .progress-step.active .progress-dot {
-      background: var(--teal);
-      border-color: var(--teal);
-      color: white;
-    }
-    .progress-step.done .progress-dot {
-      background: var(--navy);
-      border-color: var(--navy);
-      color: white;
-    }
-    .progress-step.active span,
-    .progress-step.done span { color: var(--text-dark); font-weight: 600; }
-    .progress-line { width: 28px; height: 1px; background: var(--line); }
-
-    /* ─── CARD ───────────────────────────────────────────────── */
-    .card {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 48px;
-      box-shadow: var(--shadow-md);
-      animation: fadeUp 0.4s ease;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .step { display: none; }
-    .step.active { display: block; }
-    .step-title {
-      font-family: 'Toska', Georgia, serif;
-      font-weight: 400;
-      font-size: 30px;
-      line-height: 1.2;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-    .step-desc {
-      color: var(--text-body);
-      font-size: 15px;
-      line-height: 1.65;
-      margin-bottom: 32px;
-    }
-
-    /* ─── OPTIONS ────────────────────────────────────────────── */
-    .options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    .option {
-      border: 1.5px solid var(--line);
-      border-radius: 5px;
-      padding: 24px;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: white;
-      text-align: left;
-      font-family: inherit;
-    }
-    .option:hover {
-      border-color: var(--teal);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .option-icon {
-      font-family: 'Toska', serif;
-      font-size: 26px;
-      color: var(--teal);
-      margin-bottom: 12px;
-    }
-    .option-label { font-weight: 700; font-size: 15px; margin-bottom: 5px; color: var(--text-dark); }
-    .option-desc  { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
-
-    /* ─── INPUTS ─────────────────────────────────────────────── */
-    .field { margin-bottom: 20px; }
-    .field label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      margin-bottom: 8px;
-      color: var(--text-dark);
-    }
-    .field-hint { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
-    .input-currency { position: relative; }
-    .input-currency::before {
-      content: 'R$';
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 14px;
-      font-weight: 600;
-      pointer-events: none;
-    }
-    .input-currency input { padding-left: 44px !important; }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="number"],
-    select {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid var(--line);
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 15px;
-      background: white;
-      color: var(--text-dark);
-      transition: border-color 0.2s;
-    }
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--teal);
-      box-shadow: 0 0 0 3px rgba(38,104,130,0.1);
-    }
-
-    /* ─── BUTTONS ────────────────────────────────────────────── */
-    .btn-row { display: flex; gap: 12px; margin-top: 32px; align-items: center; }
-    .btn {
-      padding: 13px 26px;
-      border: none;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--teal), var(--teal-light));
-      color: white;
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, var(--teal-light), var(--teal-pale));
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(53,152,185,0.35);
-    }
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-body);
-      border: 1.5px solid var(--line);
-    }
-    .btn-secondary:hover {
-      border-color: var(--teal);
-      color: var(--teal);
-    }
-
-    /* ─── RESULT HERO ────────────────────────────────────────── */
-    .result-hero {
-      text-align: center;
-      padding: 40px 24px;
-      background: linear-gradient(180deg, var(--teal-soft) 0%, transparent 100%);
-      border-radius: 5px;
-      margin-bottom: 32px;
-      border: 1px solid var(--line);
-    }
-    .result-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-    .result-amount {
-      font-family: 'Toska', serif;
-      font-size: clamp(48px, 8vw, 72px);
-      font-weight: 400;
-      line-height: 1;
-      color: var(--teal);
-      margin-bottom: 14px;
-    }
-    .result-amount .currency { font-size: 0.45em; color: var(--text-muted); margin-right: 6px; }
-    .result-caption { color: var(--text-body); font-size: 15px; max-width: 480px; margin: 0 auto; }
-
-    /* ─── COMPARISON ─────────────────────────────────────────── */
-    .comparison {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: 5px;
-      overflow: hidden;
-      margin-bottom: 32px;
-    }
-    .comparison-col { background: white; padding: 28px 24px; }
-    .comparison-col.highlight { background: var(--green-soft); }
-    .comparison-label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-    .comparison-value {
-      font-family: 'Toska', serif;
-      font-size: 26px;
-      font-weight: 400;
-      margin-bottom: 8px;
-      color: var(--text-dark);
-    }
-    .comparison-detail { font-size: 13px; color: var(--text-body); line-height: 1.55; }
-
-    /* ─── TIERS ──────────────────────────────────────────────── */
-    .tiers-section {
-      margin: 32px 0;
-      padding-top: 32px;
-      border-top: 1px solid var(--line);
-    }
-    .tiers-title {
-      font-family: 'Toska', serif;
-      font-size: 22px;
-      font-weight: 400;
-      margin-bottom: 6px;
-      color: var(--navy);
-    }
-    .tiers-subtitle { color: var(--text-body); font-size: 14px; margin-bottom: 20px; line-height: 1.55; }
-    .tier {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      border: 1.5px solid var(--line);
-      border-radius: 4px;
-      margin-bottom: 8px;
-      transition: all 0.2s;
-    }
-    .tier.matched {
-      border-color: var(--orange);
-      background: var(--orange-soft);
-    }
-    .tier-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--white);
-      border: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Toska', serif;
-      font-size: 16px;
-      color: var(--text-muted);
-      flex-shrink: 0;
-      font-weight: 700;
-    }
-    .tier.matched .tier-badge {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: white;
-    }
-    .tier-info { flex: 1; }
-    .tier-name { font-weight: 700; font-size: 14px; margin-bottom: 3px; color: var(--text-dark); }
-    .tier-range { font-size: 12px; color: var(--text-muted); }
-    .tier-check { color: var(--orange); font-size: 20px; display: none; }
-    .tier.matched .tier-check { display: block; }
-
-    /* ─── SLIDER ─────────────────────────────────────────────── */
-    .slider-section { margin: 24px 0; }
-    .slider-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
-    .slider-amount {
-      font-family: 'Toska', serif;
-      font-size: 34px;
-      font-weight: 400;
-      color: var(--navy);
-    }
-    input[type="range"] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 6px;
-      background: var(--line);
-      border-radius: 3px;
-      outline: none;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--teal);
-      cursor: pointer;
-      border: 3px solid white;
-      box-shadow: var(--shadow-md);
-    }
-    input[type="range"]::-moz-range-thumb {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--teal);
-      cursor: pointer;
-      border: 3px solid white;
-    }
-    .slider-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    /* ─── DISCLAIMER ─────────────────────────────────────────── */
-    .disclaimer {
-      background: var(--white);
-      border-left: 3px solid var(--teal);
-      padding: 16px 20px;
-      border-radius: 2px;
-      font-size: 13px;
-      color: var(--text-body);
-      line-height: 1.65;
-      margin-top: 24px;
-    }
-    .disclaimer strong { color: var(--text-dark); }
-
-    .warning-box {
-      background: #fef9ec;
-      border: 1px solid #f0d98a;
-      padding: 24px;
-      border-radius: 5px;
-      margin-bottom: 24px;
-    }
-    .warning-title {
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #7a5c00;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-    }
-    .warning-text { font-size: 14px; color: var(--text-body); line-height: 1.65; }
-
-    /* ─── FORM ───────────────────────────────────────────────── */
-    .checkbox-row {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      margin: 20px 0;
-      font-size: 13px;
-      color: var(--text-body);
-      line-height: 1.55;
-    }
-    .checkbox-row input { margin-top: 3px; accent-color: var(--teal); }
-    .checkbox-row a { color: var(--teal); text-decoration: underline; }
-
-    /* ─── SUCCESS ────────────────────────────────────────────── */
-    .success-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: var(--green-soft);
-      color: var(--green-start);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-family: 'Toska', serif;
-      font-size: 34px;
-    }
-    .success-text { text-align: center; margin-bottom: 32px; }
-    .next-steps {
-      background: var(--white);
-      border: 1px solid var(--line);
-      padding: 24px;
-      border-radius: 5px;
-    }
-    .next-steps h4 {
-      font-family: 'Toska', serif;
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 16px;
-      color: var(--navy);
-    }
-    .next-steps ol {
-      padding-left: 20px;
-      color: var(--text-body);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-    .next-steps ol li { margin-bottom: 8px; }
-
-    /* ─── FOOTER ─────────────────────────────────────────────── */
-    .footer {
-      background: var(--navy-deep);
-      padding: 40px 24px;
-      text-align: center;
-    }
-    .footer-logo { height: 32px; margin-bottom: 16px; opacity: 0.85; }
-    .footer-text { font-size: 12px; color: rgba(232,244,251,0.45); line-height: 1.75; }
-    .footer-text a { color: rgba(232,244,251,0.55); text-decoration: none; }
-    .footer-text a:hover { color: rgba(232,244,251,0.9); }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .navbar { padding: 0 20px; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .page-header { padding: 96px 20px 48px; }
-    }
-    @media (max-width: 600px) {
-      .options { grid-template-columns: 1fr; }
-      .comparison { grid-template-columns: 1fr; }
-      .container { padding: 32px 16px 72px; }
-      .card { padding: 28px 20px; }
-      .step-title { font-size: 24px; }
-    }
+    @font-face { font-family:'Mundial'; src:url('assets/fonts/MundialLight.otf') format('opentype'); font-weight:300; }
+    @font-face { font-family:'Mundial'; src:url('assets/fonts/MundialRegular.otf') format('opentype'); font-weight:400; }
+    @font-face { font-family:'Mundial'; src:url('assets/fonts/MundialDemibold.otf') format('opentype'); font-weight:600; }
+    @font-face { font-family:'Mundial'; src:url('assets/fonts/MundialBold.otf') format('opentype'); font-weight:700; }
+    @font-face { font-family:'Mundial'; src:url('assets/fonts/MundialBlack.otf') format('opentype'); font-weight:900; }
+    @font-face { font-family:'Toska'; src:url('assets/fonts/Toska-Regular.otf') format('opentype'); font-weight:400; }
+    @font-face { font-family:'Toska'; src:url('assets/fonts/Toska-Bold.otf') format('opentype'); font-weight:700; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .fade-in { animation: fadeUp 0.45s ease forwards; }
+    input:focus { outline: none; }
   </style>
 </head>
-<body>
+<body class="bg-ccb-white min-h-screen font-sans">
 
   <!-- ═══ NAVBAR ════════════════════════════════════════════════ -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="./"><img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="nav-logo"></a>
-      <ul class="nav-links">
-        <li><a href="./">Início</a></li>
-        <li><a href="./#sobre">Sobre</a></li>
-        <li><a href="./#especialistas">Especialistas</a></li>
-        <li><a href="./#parceiros">Parceiros</a></li>
-        <li><a href="./#blog">Blog</a></li>
-        <li><a href="./#contato">Contato</a></li>
-        <li><a href="simulador.html" class="active">Simulador</a></li>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 h-[68px] flex items-center px-5 lg:px-10 bg-navy/97 backdrop-blur-md border-b border-white/5 transition-shadow duration-300">
+    <div class="w-full max-w-6xl mx-auto flex items-center justify-between">
+      <a href="./"><img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="h-9"></a>
+      <ul class="hidden md:flex items-center gap-1 list-none m-0 p-0">
+        <li><a href="./" class="text-white/70 hover:text-white text-xs tracking-wider px-3 py-1.5 rounded transition-colors no-underline">Início</a></li>
+        <li><a href="./#sobre" class="text-white/70 hover:text-white text-xs tracking-wider px-3 py-1.5 rounded transition-colors no-underline">Sobre</a></li>
+        <li><a href="./#especialistas" class="text-white/70 hover:text-white text-xs tracking-wider px-3 py-1.5 rounded transition-colors no-underline">Especialistas</a></li>
+        <li><a href="./#parceiros" class="text-white/70 hover:text-white text-xs tracking-wider px-3 py-1.5 rounded transition-colors no-underline">Parceiros</a></li>
+        <li><a href="./#blog" class="text-white/70 hover:text-white text-xs tracking-wider px-3 py-1.5 rounded transition-colors no-underline">Blog</a></li>
+        <li><a href="./#contato" class="text-white/70 hover:text-white text-xs tracking-wider px-3 py-1.5 rounded transition-colors no-underline">Contato</a></li>
+        <li><a href="simulador.html" class="text-green-brand font-bold text-xs tracking-wider px-3 py-1.5 rounded no-underline">Simulador</a></li>
       </ul>
-      <div class="nav-right">
-        <button class="nav-lang">PT | EN</button>
-        <div class="nav-hamburger" id="hamburger" onclick="this.classList.toggle('open')">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
+      <button onclick="document.getElementById('mobileNav').classList.toggle('hidden')" class="md:hidden text-white p-1">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
   </nav>
 
+  <!-- Mobile nav -->
+  <div id="mobileNav" class="hidden fixed top-[68px] left-0 right-0 z-40 bg-navy-deep/98 backdrop-blur-md border-b border-white/10 md:hidden">
+    <ul class="list-none m-0 p-0 py-2">
+      <li><a href="./" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Início</a></li>
+      <li><a href="./#sobre" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Sobre</a></li>
+      <li><a href="./#especialistas" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Especialistas</a></li>
+      <li><a href="./#parceiros" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Parceiros</a></li>
+      <li><a href="./#blog" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Blog</a></li>
+      <li><a href="./#contato" onclick="closeMobileNav()" class="block py-3.5 px-7 text-white/75 hover:text-green-brand border-b border-white/5 text-xs font-bold tracking-[0.1em] uppercase no-underline transition-colors">Contato</a></li>
+      <li><a href="simulador.html" class="block py-3.5 px-7 text-green-brand font-bold text-xs tracking-[0.1em] uppercase no-underline">Simulador</a></li>
+    </ul>
+  </div>
+
   <!-- ═══ PAGE HEADER ══════════════════════════════════════════ -->
-  <div class="page-header">
-    <div class="page-header-inner">
-      <div class="header-eyebrow">Lei Federal de Incentivo à Cultura · Lei nº 8.313/91</div>
-      <h1>Transforme <em>impostos</em> em impacto cultural</h1>
-      <p>Direcione parte do Imposto de Renda para projetos aprovados da Cultura Cristã Brasil e apoie a produção cultural que transforma igrejas e comunidades — sem custo líquido adicional.</p>
+  <div class="bg-navy pt-[108px] pb-14 px-5 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 80% at 80% 50%,rgba(38,104,130,0.25) 0%,transparent 65%)"></div>
+      <div class="absolute inset-0" style="background:radial-gradient(ellipse 40% 50% at 10% 80%,rgba(23,142,100,0.08) 0%,transparent 55%)"></div>
+    </div>
+    <div class="relative max-w-2xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 text-green-brand text-xs font-bold tracking-[0.16em] uppercase mb-5">
+        <span class="w-5 h-0.5 rounded" style="background:linear-gradient(90deg,#178e64,#51d081)"></span>
+        Lei Rouanet · Lei do Esporte · FIA
+      </div>
+      <h1 class="font-toska text-[clamp(1.9rem,5vw,3.2rem)] text-ccb-white font-normal leading-tight mb-5">
+        Descubra quanto do seu imposto você pode <em style="background:linear-gradient(135deg,#3598b9,#58b6e7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transformar</em> em impacto social
+      </h1>
+      <p class="text-white/60 text-[0.95rem] leading-relaxed max-w-md mx-auto">
+        Simule em segundos. Sem complicação. <strong class="text-white/80">Sem custo extra para você.</strong>
+      </p>
     </div>
   </div>
 
   <!-- ═══ SIMULATOR ═════════════════════════════════════════════ -->
-  <div class="container">
+  <div class="max-w-2xl mx-auto px-4 py-10 pb-20">
 
-    <div class="progress" id="progress">
-      <div class="progress-step active" data-step="1"><div class="progress-dot">1</div><span>Perfil</span></div>
-      <div class="progress-line"></div>
-      <div class="progress-step" data-step="2"><div class="progress-dot">2</div><span>Tributação</span></div>
-      <div class="progress-line"></div>
-      <div class="progress-step" data-step="3"><div class="progress-dot">3</div><span>Simulação</span></div>
-      <div class="progress-line"></div>
-      <div class="progress-step" data-step="4"><div class="progress-dot">4</div><span>Contato</span></div>
+    <!-- STEP 1 — Profile -->
+    <div id="step1" class="bg-white rounded-2xl shadow-lg p-7 sm:p-10 fade-in">
+      <h2 class="font-toska text-2xl text-navy font-normal mb-1">Você é…</h2>
+      <p class="text-text-body text-sm mb-7 leading-relaxed">Escolha seu perfil para calcular corretamente.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <button onclick="selectType('pf')"
+          class="border-2 border-teal/25 rounded-xl p-6 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
+          <div class="font-toska text-3xl text-teal mb-3">PF</div>
+          <div class="font-bold text-text-dark text-sm mb-1">Pessoa Física</div>
+          <div class="text-text-muted text-xs leading-relaxed">Declaração completa do IRPF.<br>Redirecione até <strong class="text-teal">6%</strong> do IR devido.</div>
+        </button>
+        <button onclick="selectType('pj')"
+          class="border-2 border-teal/25 rounded-xl p-6 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
+          <div class="font-toska text-3xl text-teal mb-3">PJ</div>
+          <div class="font-bold text-text-dark text-sm mb-1">Empresa (Lucro Real)</div>
+          <div class="text-text-muted text-xs leading-relaxed">Lucro Real.<br>Redirecione até <strong class="text-teal">7%</strong> do IRPJ devido.</div>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3">
+        <div class="bg-teal-soft rounded-xl p-3 text-center">
+          <div class="text-teal font-bold text-xs">Lei Rouanet</div>
+          <div class="text-text-muted text-[10px] mt-0.5">Cultura · 4%</div>
+        </div>
+        <div class="bg-green-soft rounded-xl p-3 text-center">
+          <div class="text-green-dark font-bold text-xs">Lei do Esporte</div>
+          <div class="text-text-muted text-[10px] mt-0.5">Esporte · 2%</div>
+        </div>
+        <div class="rounded-xl p-3 text-center" style="background:rgba(255,163,0,0.08)">
+          <div class="text-orange font-bold text-xs">FIA</div>
+          <div class="text-text-muted text-[10px] mt-0.5">Infância · 1%</div>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
+    <!-- STEP 2 — Input -->
+    <div id="step2" class="hidden bg-white rounded-2xl shadow-lg p-7 sm:p-10 fade-in">
+      <button onclick="showStep('step1')" class="flex items-center gap-1 text-text-muted text-xs mb-7 hover:text-teal transition-colors">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        Voltar
+      </button>
 
-      <!-- STEP 1: PJ ou PF -->
-      <div class="step active" data-step="1">
-        <h2 class="step-title">Você está simulando como…</h2>
-        <p class="step-desc">A Lei Rouanet permite dedução tanto para empresas quanto para pessoas físicas, com limites e regras diferentes.</p>
-        <div class="options">
-          <button class="option" onclick="selectProfile('pj')">
-            <div class="option-icon">PJ</div>
-            <div class="option-label">Pessoa Jurídica</div>
-            <div class="option-desc">Empresa tributada pelo Lucro Real. Dedução de até 4% do IRPJ devido.</div>
-          </button>
-          <button class="option" onclick="selectProfile('pf')">
-            <div class="option-icon">PF</div>
-            <div class="option-label">Pessoa Física</div>
-            <div class="option-desc">Declaração completa do IRPF. Dedução de até 6% do imposto devido.</div>
-          </button>
-        </div>
+      <div id="label-pf" class="hidden">
+        <h2 class="font-toska text-2xl text-navy font-normal mb-2">Quanto você paga de Imposto de Renda por ano?</h2>
+        <p class="text-text-body text-sm mb-6 leading-relaxed">Use o <strong>IRPF devido</strong> da sua última declaração completa. Está no resumo da declaração no e-CAC.</p>
+      </div>
+      <div id="label-pj" class="hidden">
+        <h2 class="font-toska text-2xl text-navy font-normal mb-2">Quanto sua empresa paga de Imposto de Renda por ano?</h2>
+        <p class="text-text-body text-sm mb-6 leading-relaxed">Use o <strong>IRPJ devido</strong> — não o faturamento ou lucro. Seu contador ou setor financeiro tem esse número.</p>
       </div>
 
-      <!-- STEP 2A: Regime PJ -->
-      <div class="step" data-step="2-pj">
-        <h2 class="step-title">Qual o regime tributário da empresa?</h2>
-        <p class="step-desc">A Lei Rouanet só permite dedução fiscal para empresas tributadas pelo Lucro Real.</p>
-        <div class="options">
-          <button class="option" onclick="selectRegime('lucro-real')">
-            <div class="option-icon">LR</div>
-            <div class="option-label">Lucro Real</div>
-            <div class="option-desc">Apuração baseada no lucro contábil ajustado. Permitido pela Lei Rouanet.</div>
-          </button>
-          <button class="option" onclick="selectRegime('outro')">
-            <div class="option-icon">LP</div>
-            <div class="option-label">Lucro Presumido ou Simples</div>
-            <div class="option-desc">Regimes simplificados. Não permitem dedução pela Lei Rouanet.</div>
-          </button>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="goToStep(1)">← Voltar</button>
-        </div>
+      <div class="relative mb-2">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
+        <input id="irInput" type="text" placeholder="0,00" inputmode="numeric"
+          oninput="formatCurrencyInput(this); updateExample()"
+          class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
+          style="font-family:'Mundial',sans-serif"
+        >
       </div>
+      <p class="text-text-muted text-xs mb-7 leading-relaxed">
+        Exemplo: quem paga R$ 50.000 de IR pode redirecionar até
+        <strong id="exampleVal" class="text-teal">R$ 3.000,00</strong>
+        sem gastar nada a mais.
+      </p>
 
-      <!-- STEP 2B: Regime incompatível -->
-      <div class="step" data-step="2-incompatible">
-        <div class="warning-box">
-          <div class="warning-title">⚠ Empresas no Lucro Presumido ou Simples Nacional não podem deduzir contribuições da Lei Rouanet.</div>
-          <div class="warning-text">
-            A legislação federal restringe o uso da Lei Rouanet a empresas no regime de Lucro Real e a pessoas físicas que utilizam a declaração completa do IRPF.
-            <br><br>
-            Mas isso não impede sua empresa de apoiar a Cultura Cristã Brasil! Há outras formas de parceria — patrocínio direto, doações, parcerias estratégicas. Adoraríamos conversar.
+      <button onclick="calculate()"
+        class="w-full py-4 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+        style="background:linear-gradient(135deg,#266882,#3598b9)">
+        Calcular meu potencial →
+      </button>
+    </div>
+
+    <!-- STEP 3 — Result -->
+    <div id="step3" class="hidden">
+
+      <!-- Big number -->
+      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10 mb-5 fade-in">
+        <div class="text-center pb-7 border-b border-teal/10">
+          <div class="text-text-muted text-[10px] uppercase tracking-[0.2em] font-bold mb-3">Você pode destinar até</div>
+          <div class="font-toska leading-none mb-3" style="font-size:clamp(3rem,10vw,5rem);color:#266882">
+            <span style="font-size:0.38em;color:#5e7a8a;margin-right:4px">R$</span><span id="totalDisplay">0</span>
           </div>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-primary" onclick="goToContact('parceria-direta')">Falar sobre parceria direta →</button>
-          <button class="btn btn-secondary" onclick="goToStep(1)">Voltar ao início</button>
-        </div>
-      </div>
-
-      <!-- STEP 2C: IRPJ (Lucro Real) -->
-      <div class="step" data-step="2-pj-input">
-        <h2 class="step-title">Informe o IRPJ devido anual</h2>
-        <p class="step-desc">Use a estimativa do Imposto de Renda Pessoa Jurídica devido neste ano. Seu setor financeiro ou contadora tem esse número.</p>
-        <div class="field">
-          <label for="irpj">IRPJ devido estimado (anual)</label>
-          <div class="input-currency">
-            <input type="text" id="irpj" placeholder="0,00" inputmode="numeric" oninput="formatCurrency(this)">
-          </div>
-          <div class="field-hint">Não confunda com faturamento ou lucro. É o imposto efetivamente devido. A dedução máxima permitida pela Lei Rouanet é de 4% deste valor.</div>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="goToStep('2-pj')">← Voltar</button>
-          <button class="btn btn-primary" onclick="calculatePJ()">Calcular potencial →</button>
-        </div>
-      </div>
-
-      <!-- STEP 2D: IRPF -->
-      <div class="step" data-step="2-pf-input">
-        <h2 class="step-title">Informe o Imposto de Renda devido</h2>
-        <p class="step-desc">Use o valor do IRPF devido conforme sua última declaração completa. Pessoas que declaram pelo modelo simplificado não podem usar a Lei Rouanet.</p>
-        <div class="field">
-          <label for="irpf">Imposto de Renda devido (anual)</label>
-          <div class="input-currency">
-            <input type="text" id="irpf" placeholder="0,00" inputmode="numeric" oninput="formatCurrency(this)">
-          </div>
-          <div class="field-hint">A dedução máxima permitida pela Lei Rouanet para pessoas físicas é de 6% do imposto devido.</div>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="goToStep(1)">← Voltar</button>
-          <button class="btn btn-primary" onclick="calculatePF()">Calcular potencial →</button>
-        </div>
-      </div>
-
-      <!-- STEP 3: Resultado -->
-      <div class="step" data-step="3">
-        <div class="result-hero">
-          <div class="result-eyebrow">Você pode direcionar até</div>
-          <div class="result-amount"><span class="currency">R$</span><span id="maxAmount">0</span></div>
-          <p class="result-caption">…para projetos culturais aprovados da Cultura Cristã Brasil, com dedução integral do imposto devido (Artigo 18 da Lei Rouanet).</p>
+          <p class="text-text-body text-sm max-w-xs mx-auto leading-relaxed">
+            <strong class="text-text-dark">Sem gastar nada a mais</strong> — esse valor já iria para o governo de qualquer forma.
+          </p>
         </div>
 
-        <div class="comparison">
-          <div class="comparison-col">
-            <div class="comparison-label">Sem Lei Rouanet</div>
-            <div class="comparison-value" id="taxOnly">R$ 0</div>
-            <div class="comparison-detail">100% direcionado ao governo federal, sem destino específico.</div>
-          </div>
-          <div class="comparison-col highlight">
-            <div class="comparison-label">Com Lei Rouanet</div>
-            <div class="comparison-value" id="taxSplit">R$ 0 + R$ 0</div>
-            <div class="comparison-detail">Parte direcionada à Cultura Cristã Brasil. Restante ao governo. Mesmo custo total.</div>
-          </div>
-        </div>
+        <!-- Project distribution -->
+        <div class="pt-7 mb-6">
+          <h3 class="font-toska text-xl text-navy font-normal mb-1">Veja como seu imposto gera impacto</h3>
+          <p class="text-text-muted text-xs mb-5">Distribuição pelos 3 projetos ativos da CCB</p>
 
-        <div class="slider-section">
-          <label style="display:block;font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text-dark);">Quanto você pretende direcionar?</label>
-          <div class="slider-row">
-            <div class="slider-amount" id="sliderAmount">R$ 0</div>
-          </div>
-          <input type="range" id="contributionSlider" min="0" max="100" value="50" oninput="updateContribution()">
-          <div class="slider-labels">
-            <span>R$ 0</span>
-            <span id="sliderMax">R$ 0</span>
-          </div>
-        </div>
-
-        <div class="tiers-section">
-          <h3 class="tiers-title">Reconhecimento de parceria</h3>
-          <p class="tiers-subtitle">Toda contribuição recebe certificado oficial e selo digital "Parceiro CCB 2026" para uso em comunicações, relatórios ESG e redes sociais.</p>
-
-          <div class="tier" data-min="0" data-max="25000">
-            <div class="tier-badge">A</div>
-            <div class="tier-info">
-              <div class="tier-name">Parceiro Apoiador</div>
-              <div class="tier-range">Até R$ 25.000 · Selo digital + certificado + menção institucional</div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <!-- Cultura -->
+            <div class="bg-teal-soft rounded-xl p-4 border border-teal/15">
+              <div class="flex items-center gap-1.5 mb-2.5">
+                <span class="text-lg">🎵</span>
+                <span class="text-teal text-[10px] font-bold uppercase tracking-wider">Lei Rouanet</span>
+              </div>
+              <div class="font-bold text-text-dark text-[0.82rem] mb-1.5" id="culturaName">Projeto Musical CCB</div>
+              <div class="font-toska text-2xl text-teal mb-1">
+                <span class="text-xs font-sans text-text-muted">R$ </span><span id="culturaVal">0</span>
+              </div>
+              <p class="text-text-muted text-[11px] leading-relaxed mb-1.5" id="culturaDesc">Formação musical e artística para jovens cristãos.</p>
+              <div class="text-teal text-[10px] font-bold" id="culturaTag"></div>
             </div>
-            <div class="tier-check">✓</div>
-          </div>
 
-          <div class="tier" data-min="25000" data-max="100000">
-            <div class="tier-badge">M</div>
-            <div class="tier-info">
-              <div class="tier-name">Parceiro Mantenedor</div>
-              <div class="tier-range">R$ 25.000 a R$ 100.000 · + Logo no site + destaque em newsletter + relatório customizado</div>
+            <!-- Esporte -->
+            <div class="bg-green-soft rounded-xl p-4 border border-green-dark/15">
+              <div class="flex items-center gap-1.5 mb-2.5">
+                <span class="text-lg">⚽</span>
+                <span class="text-green-dark text-[10px] font-bold uppercase tracking-wider">Lei do Esporte</span>
+              </div>
+              <div class="font-bold text-text-dark text-[0.82rem] mb-1.5" id="esporteName">Projeto Esporte Cristão</div>
+              <div class="font-toska text-2xl text-green-dark mb-1">
+                <span class="text-xs font-sans text-text-muted">R$ </span><span id="esporteVal">0</span>
+              </div>
+              <p class="text-text-muted text-[11px] leading-relaxed mb-1.5" id="esporteDesc">Treinos esportivos e desenvolvimento para jovens.</p>
+              <div class="text-green-dark text-[10px] font-bold" id="esporteTag"></div>
             </div>
-            <div class="tier-check">✓</div>
-          </div>
 
-          <div class="tier" data-min="100000" data-max="500000">
-            <div class="tier-badge">E</div>
-            <div class="tier-info">
-              <div class="tier-name">Parceiro Estratégico</div>
-              <div class="tier-range">R$ 100.000 a R$ 500.000 · + Case study dedicado + visita às atividades + co-branding</div>
+            <!-- Infância -->
+            <div class="rounded-xl p-4 border" style="background:rgba(255,163,0,0.06);border-color:rgba(255,163,0,0.2)">
+              <div class="flex items-center gap-1.5 mb-2.5">
+                <span class="text-lg">👶</span>
+                <span class="text-orange text-[10px] font-bold uppercase tracking-wider">FIA</span>
+              </div>
+              <div class="font-bold text-text-dark text-[0.82rem] mb-1.5" id="infanciaName">Apoio às Crianças (CAC)</div>
+              <div class="font-toska text-2xl text-orange mb-1">
+                <span class="text-xs font-sans text-text-muted">R$ </span><span id="infanciaVal">0</span>
+              </div>
+              <p class="text-text-muted text-[11px] leading-relaxed mb-1.5" id="infanciaDesc">Cuidado, educação e apoio para crianças em vulnerabilidade.</p>
+              <div class="text-orange text-[10px] font-bold" id="infanciaTag"></div>
             </div>
-            <div class="tier-check">✓</div>
-          </div>
-
-          <div class="tier" data-min="500000" data-max="999999999">
-            <div class="tier-badge">T</div>
-            <div class="tier-info">
-              <div class="tier-name">Parceiro Transformador</div>
-              <div class="tier-range">R$ 500.000+ · Naming rights · vídeo institucional · participação em conselho consultivo</div>
-            </div>
-            <div class="tier-check">✓</div>
           </div>
         </div>
 
-        <div class="disclaimer">
-          <strong>Importante:</strong> Esta é uma estimativa baseada nos dados informados e nos limites legais da Lei nº 8.313/91. Valores efetivos dependem da apuração final do imposto, da existência de projeto aprovado em captação no momento da contribuição, e da legislação vigente. Consulte sempre seu contador para confirmação.
+        <!-- Impact line -->
+        <div class="bg-teal-soft rounded-xl p-4 text-center text-text-body text-sm leading-relaxed mb-7">
+          💚 Com esse valor, você ajuda a transformar vidas reais através dos nossos projetos.
         </div>
 
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="goBack()">← Refazer</button>
-          <button class="btn btn-primary" onclick="goToStep(4)">Quero ser parceiro →</button>
+        <!-- How it works -->
+        <div class="border-t border-teal/10 pt-6 mb-7">
+          <h3 class="font-toska text-lg text-navy font-normal mb-4">Como funciona na prática</h3>
+          <div class="space-y-3">
+            <div class="flex gap-3 items-start">
+              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">1</div>
+              <p class="text-text-body text-sm leading-relaxed">Você escolhe os projetos que deseja apoiar e confirma com a CCB</p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">2</div>
+              <p class="text-text-body text-sm leading-relaxed">Faz o depósito diretamente na conta do projeto aprovado</p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">3</div>
+              <p class="text-text-body text-sm leading-relaxed">Recebe o recibo oficial (PRONAC / comprovante legal)</p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">4</div>
+              <p class="text-text-body text-sm leading-relaxed">Seu contador aplica o abatimento na declaração — é simples</p>
+            </div>
+          </div>
+          <p class="text-text-muted text-xs mt-4 italic">Nós te ajudamos em todo o processo, junto com seu contador.</p>
         </div>
+
+        <!-- WhatsApp CTA -->
+        <a id="waBtn" href="#" target="_blank" rel="noopener"
+          class="flex items-center justify-center gap-3 w-full py-4 text-white font-bold text-base rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 mb-3 no-underline"
+          style="background:#25D366">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar no WhatsApp agora
+        </a>
+
+        <button onclick="copyContador()"
+          class="flex items-center justify-center gap-2 w-full py-3.5 border-2 border-teal/30 text-teal font-semibold text-sm rounded-xl hover:border-teal hover:bg-teal-soft transition-all duration-200">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          Copiar mensagem para meu contador
+        </button>
+        <p id="copyOk" class="hidden text-green-dark text-xs text-center mt-2">✓ Mensagem copiada! Cole no WhatsApp do seu contador.</p>
       </div>
 
-      <!-- STEP 4: Contato -->
-      <div class="step" data-step="4">
-        <h2 class="step-title">Vamos conversar</h2>
-        <p class="step-desc">Deixe seus dados e nossa equipe de captação entra em contato em até 2 dias úteis com a proposta detalhada e os próximos passos.</p>
+      <button onclick="restart()" class="w-full text-text-muted text-sm hover:text-teal transition-colors py-2">← Fazer nova simulação</button>
+    </div>
 
-        <div class="field">
-          <label for="contactName">Nome completo</label>
-          <input type="text" id="contactName" placeholder="Seu nome">
-        </div>
-        <div class="field" id="companyField">
-          <label for="contactCompany">Empresa</label>
-          <input type="text" id="contactCompany" placeholder="Razão social">
-        </div>
-        <div class="field" id="docField">
-          <label for="contactDoc"><span id="docLabel">CNPJ</span></label>
-          <input type="text" id="contactDoc" placeholder="00.000.000/0000-00">
-        </div>
-        <div class="field">
-          <label for="contactEmail">E-mail</label>
-          <input type="email" id="contactEmail" placeholder="seu@email.com">
-        </div>
-        <div class="field">
-          <label for="contactPhone">Telefone / WhatsApp</label>
-          <input type="tel" id="contactPhone" placeholder="(00) 00000-0000">
-        </div>
+  </div>
 
-        <div class="checkbox-row">
-          <input type="checkbox" id="lgpd">
-          <label for="lgpd">Concordo com o uso destes dados pela Cultura Cristã Brasil para comunicação sobre patrocínio cultural, conforme a <a href="#">Política de Privacidade</a> (LGPD).</label>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="goToStep(3)">← Voltar</button>
-          <button class="btn btn-primary" onclick="submitContact()">Enviar proposta →</button>
-        </div>
-      </div>
-
-      <!-- STEP 5: Sucesso -->
-      <div class="step" data-step="5">
-        <div class="success-icon">✓</div>
-        <div class="success-text">
-          <h2 class="step-title" style="margin-bottom:12px;">Recebemos sua proposta</h2>
-          <p class="step-desc" style="margin-bottom:0;">Obrigado pelo interesse em apoiar a Cultura Cristã Brasil. Nossa equipe entrará em contato em até <strong>2 dias úteis</strong>.</p>
-        </div>
-        <div class="next-steps">
-          <h4>Próximos passos</h4>
-          <ol>
-            <li>Você receberá um e-mail de confirmação com o resumo da sua simulação.</li>
-            <li>Nossa equipe agenda uma conversa para entender seus objetivos e apresentar os projetos aprovados em captação.</li>
-            <li>Enviamos a proposta detalhada com Pronac, valores e cronograma.</li>
-            <li>Após confirmação, sua contadora ou departamento financeiro emite a transferência para a conta específica do projeto.</li>
-            <li>Você recebe o recibo oficial para abater no IRPJ/IRPF, junto com seu certificado e selo digital de Parceiro CCB.</li>
-          </ol>
-        </div>
-        <div class="btn-row" style="justify-content:center;margin-top:32px;">
-          <button class="btn btn-secondary" onclick="goToStep(1); resetData();">Fazer nova simulação</button>
-          <a href="./" class="btn btn-primary">Voltar ao site</a>
-        </div>
-      </div>
-
+  <!-- DISCLAIMER -->
+  <div class="max-w-2xl mx-auto px-4 pb-10">
+    <div class="border-l-4 border-teal/30 pl-4 text-text-muted text-xs leading-relaxed">
+      Essa é uma simulação estimada. Os percentuais são baseados na Lei nº 8.313/91 (Rouanet), Lei nº 9.615/98 (Esporte) e ECA/CONANDA (FIA). A disponibilidade dos projetos e os valores finais dependem da apuração do IR. <strong>Consulte sempre seu contador.</strong>
     </div>
   </div>
 
-  <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
-  <footer class="footer">
-    <img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="footer-logo">
-    <div class="footer-text">
-      Cultura Cristã Brasil · <a href="./#contato">contato@culturacristabrasil.com.br</a><br>
-      Simulador baseado na Lei Federal nº 8.313/91 (Lei Rouanet) e legislação correlata. Última atualização: 2026.<br>
-      Estimativas não constituem consultoria fiscal. Consulte sempre seu contador.
-    </div>
+  <!-- FOOTER -->
+  <footer class="bg-navy-deep border-t border-white/5 py-10 px-5 text-center">
+    <img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="h-8 mx-auto mb-4 opacity-75">
+    <p class="text-white/30 text-xs leading-relaxed">
+      © 2026 Cultura Cristã Brasil ·
+      <a href="./#contato" class="hover:text-white/60 transition-colors no-underline">contato@culturacristabrasil.com.br</a>
+    </p>
   </footer>
 
   <script>
-    // Navbar scroll shadow
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    // ╔══════════════════════════════════════════════════════════════╗
+    // ║  CONFIG — update these values for each NGO                  ║
+    // ╚══════════════════════════════════════════════════════════════╝
+    const WHATSAPP = '55XXXXXXXXXXX'; // ← replace with real number
 
-    // Simulator state
-    let state = {
-      profile: null,
-      regime: null,
-      taxOwed: 0,
-      maxContribution: 0,
-      chosenContribution: 0
+    const PROJECTS = {
+      cultura:  { name: 'Projeto Musical CCB',           desc: 'Formação musical e artística para jovens cristãos.' },
+      esporte:  { name: 'Projeto Esporte Cristão',       desc: 'Treinos esportivos e desenvolvimento para jovens.' },
+      infancia: { name: 'Apoio às Crianças (CAC)',       desc: 'Cuidado, educação e apoio para crianças em vulnerabilidade.' }
     };
+    // ╚══════════════════════════════════════════════════════════════╝
 
-    function selectProfile(profile) {
-      state.profile = profile;
-      updateProgress(2);
-      goToStep(profile === 'pj' ? '2-pj' : '2-pf-input');
-    }
+    let userType = null;
+    let maxTotal  = 0;
 
-    function selectRegime(regime) {
-      state.regime = regime;
-      goToStep(regime === 'lucro-real' ? '2-pj-input' : '2-incompatible');
-    }
+    // Populate project names/descriptions from config
+    document.getElementById('culturaName').textContent  = PROJECTS.cultura.name;
+    document.getElementById('esporteName').textContent  = PROJECTS.esporte.name;
+    document.getElementById('infanciaName').textContent = PROJECTS.infancia.name;
+    document.getElementById('culturaDesc').textContent  = PROJECTS.cultura.desc;
+    document.getElementById('esporteDesc').textContent  = PROJECTS.esporte.desc;
+    document.getElementById('infanciaDesc').textContent = PROJECTS.infancia.desc;
 
-    function goToStep(stepId) {
-      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-      const target = document.querySelector(`[data-step="${stepId}"]`);
-      if (target) target.classList.add('active');
-      const numeric = String(stepId).match(/^\d+/);
-      if (numeric) updateProgress(parseInt(numeric[0]));
+    // ── Step navigation ─────────────────────────────────────────────
+    function showStep(id) {
+      ['step1','step2','step3'].forEach(s => document.getElementById(s).classList.add('hidden'));
+      const el = document.getElementById(id);
+      el.classList.remove('hidden');
+      el.classList.remove('fade-in');
+      void el.offsetHeight; // reflow
+      el.classList.add('fade-in');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function updateProgress(currentStep) {
-      document.querySelectorAll('.progress-step').forEach(el => {
-        const step = parseInt(el.dataset.step);
-        el.classList.remove('active', 'done');
-        if (step < currentStep) el.classList.add('done');
-        else if (step === currentStep) el.classList.add('active');
-      });
+    function selectType(type) {
+      userType = type;
+      document.getElementById('label-pf').classList.toggle('hidden', type !== 'pf');
+      document.getElementById('label-pj').classList.toggle('hidden', type !== 'pj');
+      updateExample();
+      showStep('step2');
     }
 
-    function formatCurrency(input) {
-      let value = input.value.replace(/\D/g, '');
-      if (!value) { input.value = ''; return; }
-      value = (parseInt(value) / 100).toFixed(2);
-      value = value.replace('.', ',');
-      value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-      input.value = value;
+    function updateExample() {
+      const rate = userType === 'pf' ? 0.06 : 0.07;
+      document.getElementById('exampleVal').textContent = 'R$ ' + formatBRL(50000 * rate);
     }
 
-    function parseCurrency(str) {
-      if (!str) return 0;
-      return parseFloat(str.replace(/\./g, '').replace(',', '.')) || 0;
+    // ── Currency helpers ────────────────────────────────────────────
+    function formatCurrencyInput(el) {
+      let v = el.value.replace(/\D/g, '');
+      if (!v) { el.value = ''; return; }
+      v = (parseInt(v) / 100).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+      el.value = v;
     }
 
-    function formatBRL(num) {
-      return num.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    function parseBRL(s) {
+      return parseFloat((s||'').replace(/\./g,'').replace(',','.')) || 0;
     }
 
-    function calculatePJ() {
-      const irpj = parseCurrency(document.getElementById('irpj').value);
-      if (irpj <= 0) { alert('Por favor, informe o valor do IRPJ devido.'); return; }
-      state.taxOwed = irpj;
-      state.maxContribution = irpj * 0.04;
-      showResult();
+    function formatBRL(n) {
+      return n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    function calculatePF() {
-      const irpf = parseCurrency(document.getElementById('irpf').value);
-      if (irpf <= 0) { alert('Por favor, informe o valor do imposto devido.'); return; }
-      state.taxOwed = irpf;
-      state.maxContribution = irpf * 0.06;
-      showResult();
+    function fmtInt(n) {
+      return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     }
 
-    function showResult() {
-      document.getElementById('maxAmount').textContent = formatBRL(state.maxContribution);
-      document.getElementById('taxOnly').textContent = 'R$ ' + formatBRL(state.taxOwed);
-      document.getElementById('sliderMax').textContent = 'R$ ' + formatBRL(state.maxContribution);
-      state.chosenContribution = state.maxContribution * 0.5;
-      document.getElementById('contributionSlider').value = 50;
-      updateContribution();
-      goToStep(3);
-    }
-
-    function updateContribution() {
-      const pct = parseFloat(document.getElementById('contributionSlider').value);
-      state.chosenContribution = state.maxContribution * (pct / 100);
-      const remainingTax = state.taxOwed - state.chosenContribution;
-      document.getElementById('sliderAmount').textContent = 'R$ ' + formatBRL(state.chosenContribution);
-      document.getElementById('taxSplit').innerHTML =
-        `R$ ${formatBRL(state.chosenContribution)}<span style="font-size:0.5em;color:var(--text-muted);"> + R$ ${formatBRL(remainingTax)}</span>`;
-      document.querySelectorAll('.tier').forEach(tier => {
-        const min = parseFloat(tier.dataset.min);
-        const max = parseFloat(tier.dataset.max);
-        tier.classList.toggle('matched', state.chosenContribution >= min && state.chosenContribution < max);
-      });
-    }
-
-    function goBack() {
-      goToStep(state.profile === 'pj' ? '2-pj-input' : '2-pf-input');
-    }
-
-    function goToContact(reason) {
-      state.profile = reason;
-      document.getElementById('companyField').style.display = 'block';
-      goToStep(4);
-    }
-
-    function submitContact() {
-      const name  = document.getElementById('contactName').value.trim();
-      const email = document.getElementById('contactEmail').value.trim();
-      const lgpd  = document.getElementById('lgpd').checked;
-      if (!name || !email) { alert('Por favor, preencha nome e e-mail.'); return; }
-      if (!lgpd) { alert('Por favor, aceite os termos de uso de dados (LGPD).'); return; }
-      console.log('Lead capturado:', {
-        profile: state.profile,
-        taxOwed: state.taxOwed,
-        maxContribution: state.maxContribution,
-        chosenContribution: state.chosenContribution,
-        name,
-        company: document.getElementById('contactCompany').value,
-        doc: document.getElementById('contactDoc').value,
-        email,
-        phone: document.getElementById('contactPhone').value,
-        timestamp: new Date().toISOString()
-      });
-      goToStep(5);
-    }
-
-    function resetData() {
-      state = { profile: null, regime: null, taxOwed: 0, maxContribution: 0, chosenContribution: 0 };
-      document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]')
-        .forEach(i => i.value = '');
-      document.getElementById('lgpd').checked = false;
-    }
-
-    document.getElementById('contactDoc').addEventListener('focus', function() {
-      if (state.profile === 'pf') {
-        document.getElementById('docLabel').textContent = 'CPF';
-        document.getElementById('companyField').style.display = 'none';
-        this.placeholder = '000.000.000-00';
-      } else {
-        document.getElementById('docLabel').textContent = 'CNPJ';
-        document.getElementById('companyField').style.display = 'block';
-        this.placeholder = '00.000.000/0000-00';
+    // ── Calculate ───────────────────────────────────────────────────
+    function calculate() {
+      const ir = parseBRL(document.getElementById('irInput').value);
+      const inp = document.getElementById('irInput');
+      if (ir <= 0) {
+        inp.style.borderColor = '#ef4444';
+        inp.placeholder = 'Por favor informe um valor';
+        return;
       }
+      inp.style.borderColor = '';
+
+      let cultura, esporte, infancia;
+      if (userType === 'pj') {
+        cultura  = ir * 0.04;
+        esporte  = ir * 0.02;
+        infancia = ir * 0.01;
+      } else {
+        const t = ir * 0.06;
+        cultura  = t * (4/7);
+        esporte  = t * (2/7);
+        infancia = t * (1/7);
+      }
+      maxTotal = cultura + esporte + infancia;
+
+      document.getElementById('totalDisplay').textContent  = fmtInt(maxTotal);
+      document.getElementById('culturaVal').textContent    = fmtInt(cultura);
+      document.getElementById('esporteVal').textContent    = fmtInt(esporte);
+      document.getElementById('infanciaVal').textContent   = fmtInt(infancia);
+
+      document.getElementById('culturaTag').textContent  = userType === 'pj' ? '4% do IR · Lei Rouanet' : `${((cultura/ir)*100).toFixed(1)}% do IR`;
+      document.getElementById('esporteTag').textContent  = userType === 'pj' ? '2% do IR · Lei do Esporte' : `${((esporte/ir)*100).toFixed(1)}% do IR`;
+      document.getElementById('infanciaTag').textContent = userType === 'pj' ? '1% do IR · FIA' : `${((infancia/ir)*100).toFixed(1)}% do IR`;
+
+      const msg = encodeURIComponent(`Olá! Fiz a simulação no site e posso destinar cerca de R$ ${formatBRL(maxTotal)}. Gostaria de apoiar esses projetos. Pode me orientar como fazer?`);
+      document.getElementById('waBtn').href = `https://wa.me/${WHATSAPP}?text=${msg}`;
+
+      showStep('step3');
+    }
+
+    // ── Copy for contador ───────────────────────────────────────────
+    function copyContador() {
+      const msg = `Olá, gostaria de fazer uma destinação via leis de incentivo fiscal (Rouanet, Esporte ou FIA). Você pode me orientar com base nesse valor estimado de R$ ${formatBRL(maxTotal)}?`;
+      navigator.clipboard.writeText(msg).then(() => {
+        const ok = document.getElementById('copyOk');
+        ok.classList.remove('hidden');
+        setTimeout(() => ok.classList.add('hidden'), 4000);
+      });
+    }
+
+    // ── Restart ─────────────────────────────────────────────────────
+    function restart() {
+      userType = null; maxTotal = 0;
+      document.getElementById('irInput').value = '';
+      showStep('step1');
+    }
+
+    // ── Mobile nav ──────────────────────────────────────────────────
+    function closeMobileNav() {
+      document.getElementById('mobileNav').classList.add('hidden');
+    }
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').style.boxShadow = window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,0.35)' : '';
+      if (window.scrollY > 80) closeMobileNav();
     });
   </script>
-
 </body>
 </html>
