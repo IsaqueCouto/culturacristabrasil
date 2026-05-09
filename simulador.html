@@ -91,11 +91,11 @@
         <span class="w-5 h-0.5 rounded" style="background:linear-gradient(90deg,#178e64,#51d081)"></span>
         IR · ICMS · ISS · IPTU
       </div>
-      <h1 class="font-toska text-[clamp(1.9rem,5vw,3.2rem)] text-ccb-white font-normal leading-tight mb-5">
-        Descubra quanto dos seus impostos você pode <em style="background:linear-gradient(135deg,#3598b9,#58b6e7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transformar</em> em impacto social
+      <h1 class="font-toska text-[clamp(1.9rem,5vw,3.2rem)] text-ccb-white font-normal leading-tight mb-4">
+        Sua empresa pode estar <em style="background:linear-gradient(135deg,#3598b9,#58b6e7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">deixando dinheiro na mesa</em>
       </h1>
       <p class="text-white/60 text-[0.95rem] leading-relaxed max-w-md mx-auto">
-        Simulação completa: IR federal + oportunidades estaduais e municipais. <strong class="text-white/80">Sem custo extra para você.</strong>
+        A maioria das empresas não sabe que pode redirecionar impostos já devidos para projetos sociais aprovados — <strong class="text-white/80">sem custo extra.</strong>
       </p>
     </div>
   </div>
@@ -105,47 +105,56 @@
 
     <!-- STEP 1 — Profile -->
     <div id="step1" class="bg-white rounded-2xl shadow-lg p-7 sm:p-10 fade-in">
-      <h2 class="font-toska text-2xl text-navy font-normal mb-1">Você é…</h2>
-      <p class="text-text-body text-sm mb-7 leading-relaxed">Escolha seu perfil para calcular as oportunidades corretas.</p>
+      <h2 class="font-toska text-2xl text-navy font-normal mb-1">Qual é o seu perfil?</h2>
+      <p class="text-text-body text-sm mb-7 leading-relaxed">Escolha o regime para ver as oportunidades disponíveis.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-        <button onclick="selectType('pf')"
-          class="border-2 border-teal/25 rounded-xl p-5 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
-          <div class="font-toska text-3xl text-teal mb-3">PF</div>
-          <div class="font-bold text-text-dark text-sm mb-1">Pessoa Física</div>
-          <div class="text-text-muted text-xs leading-relaxed">Declaração completa.<br>Até <strong class="text-teal">6%</strong> do IRPF.</div>
+      <div class="grid grid-cols-2 gap-3 mb-7">
+
+        <button onclick="selectProfile('pf')"
+          class="border-2 border-teal/20 rounded-xl p-4 text-left transition-all duration-200 hover:border-teal hover:shadow-md bg-white cursor-pointer">
+          <div class="text-2xl mb-2">👤</div>
+          <div class="font-bold text-text-dark text-sm mb-2.5">Pessoa Física</div>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-teal-soft text-teal">IR Pessoal · 6%</span>
+          </div>
         </button>
-        <button onclick="selectType('pj')"
-          class="border-2 border-teal/25 rounded-xl p-5 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
-          <div class="font-toska text-3xl text-teal mb-3">PJ</div>
-          <div class="font-bold text-text-dark text-sm mb-1">Empresa (Lucro Real)</div>
-          <div class="text-text-muted text-xs leading-relaxed">Lucro Real.<br>Até <strong class="text-teal">8%</strong> do IRPJ.</div>
+
+        <button onclick="selectProfile('lr')"
+          class="border-2 border-teal/20 rounded-xl p-4 text-left transition-all duration-200 hover:border-teal hover:shadow-md bg-white cursor-pointer">
+          <div class="text-2xl mb-2">🏢</div>
+          <div class="font-bold text-text-dark text-sm mb-2.5">Lucro Real</div>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-green-soft text-green-dark">IRPJ · 4+2+1+1%</span>
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full mt-1" style="background:rgba(23,142,100,0.1);color:#178e64">+ ICMS-SC</span>
+          </div>
         </button>
-        <button onclick="selectType('ambos')"
-          class="border-2 border-teal/25 rounded-xl p-5 text-left transition-all duration-200 hover:border-teal hover:shadow-md hover:-translate-y-0.5 bg-white cursor-pointer">
-          <div class="font-toska text-3xl text-teal mb-3">👥</div>
-          <div class="font-bold text-text-dark text-sm mb-1">Ambos</div>
-          <div class="text-text-muted text-xs leading-relaxed">PF + PJ combinados.</div>
+
+        <button onclick="selectProfile('lp')"
+          class="border-2 border-teal/20 rounded-xl p-4 text-left transition-all duration-200 hover:border-teal hover:shadow-md bg-white cursor-pointer">
+          <div class="text-2xl mb-2">📊</div>
+          <div class="font-bold text-text-dark text-sm mb-2.5">Lucro Presumido</div>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full" style="background:rgba(23,142,100,0.1);color:#178e64">ICMS-SC</span>
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full mt-1 bg-gray-100 text-gray-400">IR fed. — N/A</span>
+          </div>
         </button>
+
+        <button onclick="selectProfile('sn')"
+          class="border-2 border-teal/20 rounded-xl p-4 text-left transition-all duration-200 hover:border-teal hover:shadow-md bg-white cursor-pointer">
+          <div class="text-2xl mb-2">🌿</div>
+          <div class="font-bold text-text-dark text-sm mb-2.5">Simples Nacional</div>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">IR fed. — N/A</span>
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full mt-1 bg-yellow-50 text-yellow-600">ICMS · verificar</span>
+          </div>
+        </button>
+
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div class="bg-teal-soft rounded-xl p-3 text-center">
-          <div class="text-teal font-bold text-xs">Lei Rouanet</div>
-          <div class="text-text-muted text-[10px] mt-0.5">Cultura · 4% PJ</div>
-        </div>
-        <div class="bg-green-soft rounded-xl p-3 text-center">
-          <div class="text-green-dark font-bold text-xs">Lei do Esporte</div>
-          <div class="text-text-muted text-[10px] mt-0.5">Esporte · 2% PJ</div>
-        </div>
-        <div class="rounded-xl p-3 text-center" style="background:rgba(255,163,0,0.08)">
-          <div class="text-orange font-bold text-xs">FIA</div>
-          <div class="text-text-muted text-[10px] mt-0.5">Infância · 1% PJ</div>
-        </div>
-        <div class="rounded-xl p-3 text-center" style="background:rgba(53,152,185,0.08)">
-          <div class="font-bold text-xs" style="color:#3598b9">Est. Idoso</div>
-          <div class="text-text-muted text-[10px] mt-0.5">Idoso · 1% PJ</div>
-        </div>
+      <div class="bg-teal-soft rounded-xl p-4">
+        <p class="text-text-muted text-xs leading-relaxed">
+          <strong class="text-teal">Não sabe o regime da sua empresa?</strong> Verifique com seu contador ou no cartão CNPJ — costuma constar nas guias de pagamento de impostos.
+        </p>
       </div>
     </div>
 
@@ -157,38 +166,111 @@
       </button>
 
       <!-- PF block -->
-      <div id="block-pf" class="hidden mb-7">
+      <div id="block-pf" class="hidden">
         <h2 class="font-toska text-xl text-navy font-normal mb-1">Pessoa Física</h2>
-        <p class="text-text-body text-sm mb-4 leading-relaxed">Quanto você paga de <strong>Imposto de Renda</strong> por ano? (IRPF devido — use a declaração completa no e-CAC)</p>
+        <p class="text-text-body text-sm mb-5 leading-relaxed">Quanto você paga de <strong>Imposto de Renda</strong> por ano? (IRPF devido — verifique no e-CAC)</p>
         <div class="relative mb-1.5">
           <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
-          <input id="irInputPF" type="text" placeholder="0,00" inputmode="numeric"
+          <input id="inputIRPF" type="text" placeholder="0,00" inputmode="numeric"
             oninput="formatCurrencyInput(this)"
             class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
             style="font-family:'Mundial',sans-serif">
         </div>
-        <p class="text-text-muted text-xs">Ex.: quem paga R$&nbsp;50.000 de IR pode redirecionar até <strong class="text-teal">R$&nbsp;3.000</strong></p>
+        <p class="text-text-muted text-xs mb-6">Ex.: quem paga R$ 50.000 de IR pode redirecionar até <strong class="text-teal">R$ 3.000</strong></p>
+        <button onclick="calculate()"
+          class="w-full py-4 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+          style="background:linear-gradient(135deg,#266882,#3598b9)">
+          Calcular meu potencial →
+        </button>
       </div>
 
-      <!-- PJ block -->
-      <div id="block-pj" class="hidden">
-        <h2 class="font-toska text-xl text-navy font-normal mb-1">Empresa (Lucro Real)</h2>
-        <p class="text-text-body text-sm mb-4 leading-relaxed">Quanto sua empresa paga de <strong>IRPJ</strong> por ano? (valor devido — não o faturamento ou lucro bruto)</p>
-        <div class="relative mb-1.5">
-          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
-          <input id="irInputPJ" type="text" placeholder="0,00" inputmode="numeric"
-            oninput="formatCurrencyInput(this)"
-            class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
-            style="font-family:'Mundial',sans-serif">
+      <!-- Lucro Real block -->
+      <div id="block-lr" class="hidden">
+        <h2 class="font-toska text-xl text-navy font-normal mb-1">Lucro Real</h2>
+        <p class="text-text-body text-sm mb-5 leading-relaxed">Informe os impostos pagos pela sua empresa:</p>
+        <div class="mb-5">
+          <label class="block text-text-dark font-bold text-sm mb-2">IRPJ anual <span class="text-text-muted font-normal">(valor devido)</span></label>
+          <div class="relative mb-1.5">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
+            <input id="inputIRPJ" type="text" placeholder="0,00" inputmode="numeric"
+              oninput="formatCurrencyInput(this)"
+              class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
+              style="font-family:'Mundial',sans-serif">
+          </div>
+          <p class="text-text-muted text-xs">Ex.: R$ 100.000 de IRPJ → potencial de <strong class="text-teal">R$ 8.000</strong> via IR federal</p>
         </div>
-        <p class="text-text-muted text-xs">Ex.: empresa com R$&nbsp;100.000 de IRPJ pode redirecionar até <strong class="text-teal">R$&nbsp;8.000</strong></p>
+        <div class="mb-6">
+          <label class="block text-text-dark font-bold text-sm mb-2">ICMS anual <span class="text-text-muted font-normal">(opcional — incentivo estadual SC)</span></label>
+          <div class="relative mb-1.5">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
+            <input id="inputICMS_lr" type="text" placeholder="0,00" inputmode="numeric"
+              oninput="formatCurrencyInput(this)"
+              class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
+              style="font-family:'Mundial',sans-serif">
+          </div>
+          <p class="text-text-muted text-xs">Programas SEITEC/PIC-SC: potencial de até <strong class="text-green-dark">~15%</strong> do ICMS</p>
+        </div>
+        <button onclick="calculate()"
+          class="w-full py-4 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+          style="background:linear-gradient(135deg,#266882,#3598b9)">
+          Calcular meu potencial →
+        </button>
       </div>
 
-      <button onclick="calculate()"
-        class="w-full py-4 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 mt-2"
-        style="background:linear-gradient(135deg,#266882,#3598b9)">
-        Calcular meu potencial →
-      </button>
+      <!-- Lucro Presumido block -->
+      <div id="block-lp" class="hidden">
+        <h2 class="font-toska text-xl text-navy font-normal mb-1">Lucro Presumido</h2>
+        <div class="rounded-xl border p-4 mb-5" style="background:rgba(255,163,0,0.06);border-color:rgba(255,163,0,0.25)">
+          <p class="text-text-body text-sm leading-relaxed">
+            <strong class="text-orange">Leis federais de IR</strong> (Rouanet, FIA, Esporte, Idoso) exigem Lucro Real e <strong>não se aplicam</strong> a este regime. Mas você pode ter oportunidade via <strong class="text-green-dark">ICMS estadual</strong>.
+          </p>
+        </div>
+        <div class="mb-6">
+          <label class="block text-text-dark font-bold text-sm mb-2">ICMS anual pago <span class="text-text-muted font-normal">(para estimar incentivo estadual)</span></label>
+          <div class="relative mb-1.5">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted font-semibold text-sm pointer-events-none">R$</span>
+            <input id="inputICMS_lp" type="text" placeholder="0,00" inputmode="numeric"
+              oninput="formatCurrencyInput(this)"
+              class="w-full pl-10 pr-4 py-4 border-2 border-teal/25 rounded-xl text-text-dark text-xl font-bold transition-colors bg-ccb-white"
+              style="font-family:'Mundial',sans-serif">
+          </div>
+          <p class="text-text-muted text-xs">ICMS-SC (SEITEC/PIC): potencial de até <strong class="text-green-dark">~15%</strong> do ICMS pago</p>
+        </div>
+        <button onclick="calculate()"
+          class="w-full py-4 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+          style="background:linear-gradient(135deg,#178e64,#51d081)">
+          Ver oportunidades de ICMS →
+        </button>
+      </div>
+
+      <!-- Simples Nacional block -->
+      <div id="block-sn" class="hidden">
+        <h2 class="font-toska text-xl text-navy font-normal mb-4">Simples Nacional</h2>
+        <div class="rounded-xl border p-5 mb-4" style="background:rgba(255,163,0,0.06);border-color:rgba(255,163,0,0.25)">
+          <div class="flex gap-3 items-start">
+            <span class="text-xl shrink-0 mt-0.5">⚠️</span>
+            <div>
+              <p class="text-text-dark font-bold text-sm mb-1">Leis federais de IR não se aplicam</p>
+              <p class="text-text-body text-sm leading-relaxed">Empresas do Simples Nacional não apuram IRPJ separado, portanto deduções via Rouanet, FIA, Lei do Esporte e Estatuto do Idoso <strong>não estão disponíveis</strong> neste regime.</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-xl border p-5 mb-6" style="background:rgba(23,142,100,0.05);border-color:rgba(23,142,100,0.2)">
+          <div class="flex gap-3 items-start">
+            <span class="text-xl shrink-0 mt-0.5">🏛️</span>
+            <div>
+              <p class="text-text-dark font-bold text-sm mb-1">ICMS — verifique com seu contador</p>
+              <p class="text-text-body text-sm leading-relaxed">Dependendo do programa, empresas do Simples podem ter elegibilidade a incentivos de ICMS em Santa Catarina (SEITEC/PIC). Consulte seu contador para confirmar.</p>
+            </div>
+          </div>
+        </div>
+        <a id="snWaBtn" href="#" target="_blank" rel="noopener"
+          class="flex items-center justify-center gap-3 w-full py-4 text-white font-bold text-sm rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 no-underline"
+          style="background:#25D366">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar com especialista sobre ICMS
+        </a>
+      </div>
     </div>
 
     <!-- STEP 3 — Results -->
@@ -202,163 +284,17 @@
             <span style="font-size:0.38em;color:#5e7a8a;margin-right:4px">R$</span><span id="totalDisplay">0</span>
           </div>
           <p class="text-text-body text-sm max-w-xs mx-auto leading-relaxed">
-            <strong class="text-text-dark">Sem gastar nada a mais</strong> — esse valor já iria para o governo de qualquer forma.
+            <strong class="text-text-dark">Sem gastar nada a mais</strong> — esse valor já vai para o governo de qualquer forma.
           </p>
         </div>
-
-        <!-- PF breakdown -->
-        <div id="res-pf" class="hidden pt-6 border-b border-teal/10 pb-6">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-bold text-text-dark text-sm">Pessoa Física</span>
-            <span class="font-toska text-xl text-teal">R$ <span id="pfTotal">0</span></span>
-          </div>
-          <p class="text-text-muted text-xs">6% do IRPF distribuído entre os 4 projetos.</p>
-        </div>
-
-        <!-- PJ breakdown -->
-        <div id="res-pj" class="hidden pt-6">
-          <div class="flex items-center justify-between mb-4">
-            <span class="font-bold text-text-dark text-sm">Empresa (Lucro Real)</span>
-            <span class="font-toska text-xl text-teal">R$ <span id="pjTotal">0</span></span>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-text-body text-xs">Cultura — Lei Rouanet (4%)</span>
-              <span class="font-bold text-teal text-sm">R$ <span id="pjCulturaVal">0</span></span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-text-body text-xs">Esporte — Lei do Esporte (2%)</span>
-              <span class="font-bold text-green-dark text-sm">R$ <span id="pjEsporteVal">0</span></span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-text-body text-xs">Infância — FIA (1%)</span>
-              <span class="font-bold text-orange text-sm">R$ <span id="pjInfanciaVal">0</span></span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-text-body text-xs">Idoso — Estatuto do Idoso (1%)</span>
-              <span class="font-bold text-sm" style="color:#3598b9">R$ <span id="pjIdosoVal">0</span></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ambos note -->
-        <div id="res-combined" class="hidden mt-4">
-          <div class="bg-teal-soft rounded-xl p-3 text-center">
-            <p class="text-text-muted text-xs">Valores provenientes de declarações separadas (pessoa física e jurídica)</p>
-          </div>
-        </div>
+        <div class="pt-5" id="lawBreakdown"></div>
       </div>
 
       <!-- Project cards -->
-      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10">
-        <h3 class="font-toska text-xl text-navy font-normal mb-1">Veja como seu imposto gera impacto</h3>
-        <p class="text-text-muted text-xs mb-5">Distribuição pelos projetos ativos da CCB</p>
-        <div class="grid grid-cols-2 gap-3">
+      <div id="projectSection" class="bg-white rounded-2xl shadow-lg p-7 sm:p-10"></div>
 
-          <div class="bg-teal-soft rounded-xl p-4 border border-teal/15">
-            <div class="flex items-center gap-1.5 mb-2">
-              <span>🎵</span>
-              <span class="text-teal text-[10px] font-bold uppercase tracking-wider">Lei Rouanet</span>
-            </div>
-            <div class="font-bold text-text-dark text-xs mb-1.5" id="culturaName">—</div>
-            <div class="font-toska text-xl text-teal mb-1"><span class="text-xs font-sans text-text-muted">R$ </span><span id="culturaVal">0</span></div>
-            <p class="text-text-muted text-[11px] leading-relaxed" id="culturaDesc">—</p>
-          </div>
-
-          <div class="bg-green-soft rounded-xl p-4 border border-green-dark/15">
-            <div class="flex items-center gap-1.5 mb-2">
-              <span>⚽</span>
-              <span class="text-green-dark text-[10px] font-bold uppercase tracking-wider">Lei do Esporte</span>
-            </div>
-            <div class="font-bold text-text-dark text-xs mb-1.5" id="esporteName">—</div>
-            <div class="font-toska text-xl text-green-dark mb-1"><span class="text-xs font-sans text-text-muted">R$ </span><span id="esporteVal">0</span></div>
-            <p class="text-text-muted text-[11px] leading-relaxed" id="esporteDesc">—</p>
-          </div>
-
-          <div class="rounded-xl p-4 border" style="background:rgba(255,163,0,0.06);border-color:rgba(255,163,0,0.2)">
-            <div class="flex items-center gap-1.5 mb-2">
-              <span>👶</span>
-              <span class="text-orange text-[10px] font-bold uppercase tracking-wider">FIA</span>
-            </div>
-            <div class="font-bold text-text-dark text-xs mb-1.5" id="infanciaName">—</div>
-            <div class="font-toska text-xl text-orange mb-1"><span class="text-xs font-sans text-text-muted">R$ </span><span id="infanciaVal">0</span></div>
-            <p class="text-text-muted text-[11px] leading-relaxed" id="infanciaDesc">—</p>
-          </div>
-
-          <div class="rounded-xl p-4 border" style="background:rgba(53,152,185,0.07);border-color:rgba(53,152,185,0.2)">
-            <div class="flex items-center gap-1.5 mb-2">
-              <span>👴</span>
-              <span class="text-[10px] font-bold uppercase tracking-wider" style="color:#3598b9">Est. do Idoso</span>
-            </div>
-            <div class="font-bold text-text-dark text-xs mb-1.5" id="idosoName">—</div>
-            <div class="font-toska text-xl mb-1" style="color:#3598b9"><span class="text-xs font-sans text-text-muted">R$ </span><span id="idosoVal">0</span></div>
-            <p class="text-text-muted text-[11px] leading-relaxed" id="idosoDesc">—</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Multi-tax opportunities -->
-      <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10">
-        <h3 class="font-toska text-xl text-navy font-normal mb-1">Outras formas de direcionar seus impostos</h3>
-        <p class="text-text-muted text-xs mb-6 leading-relaxed">Além do IR, sua empresa pode ter outras oportunidades dependendo da atividade e localização.</p>
-
-        <div class="space-y-4">
-
-          <div class="rounded-xl border p-5" style="background:rgba(23,142,100,0.04);border-color:rgba(23,142,100,0.18)">
-            <div class="flex items-start justify-between gap-3 mb-2">
-              <div>
-                <div class="font-bold text-text-dark text-sm">ICMS <span class="text-text-muted font-normal text-xs">(Estadual)</span></div>
-                <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(23,142,100,0.12);color:#178e64">Depende do estado e regime</span>
-              </div>
-              <span class="text-2xl shrink-0">🏛️</span>
-            </div>
-            <p class="text-text-body text-xs leading-relaxed mb-2">Empresas em Santa Catarina podem utilizar programas como <strong>SEITEC</strong> e <strong>PIC</strong> para direcionar parte do ICMS para projetos culturais, esportivos e sociais.</p>
-            <p class="text-green-dark text-xs font-bold mb-3">Possível direcionamento: até cerca de 15% do ICMS (varia conforme empresa)</p>
-            <a id="icmsBtn" href="#" target="_blank" rel="noopener"
-              class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
-              style="background:#178e64">
-              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Quero verificar meu ICMS
-            </a>
-          </div>
-
-          <div class="rounded-xl border p-5" style="background:rgba(38,104,130,0.04);border-color:rgba(38,104,130,0.18)">
-            <div class="flex items-start justify-between gap-3 mb-2">
-              <div>
-                <div class="font-bold text-text-dark text-sm">ISS <span class="text-text-muted font-normal text-xs">(Municipal)</span></div>
-                <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(38,104,130,0.12);color:#266882">Depende da cidade</span>
-              </div>
-              <span class="text-2xl shrink-0">🏢</span>
-            </div>
-            <p class="text-text-body text-xs leading-relaxed mb-3">Empresas prestadoras de serviços podem ter acesso a <strong>incentivos fiscais municipais</strong> para apoiar projetos sociais aprovados.</p>
-            <a id="issBtn" href="#" target="_blank" rel="noopener"
-              class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
-              style="background:#266882">
-              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Verificar ISS
-            </a>
-          </div>
-
-          <div class="rounded-xl border p-5" style="background:rgba(255,163,0,0.04);border-color:rgba(255,163,0,0.2)">
-            <div class="flex items-start justify-between gap-3 mb-2">
-              <div>
-                <div class="font-bold text-text-dark text-sm">IPTU <span class="text-text-muted font-normal text-xs">(Municipal)</span></div>
-                <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(255,163,0,0.12);color:#ffa300">Disponível em cidades específicas</span>
-              </div>
-              <span class="text-2xl shrink-0">🏠</span>
-            </div>
-            <p class="text-text-body text-xs leading-relaxed mb-3">Em alguns municípios é possível destinar parte do <strong>IPTU</strong> para projetos sociais aprovados pela prefeitura.</p>
-            <a id="iptuBtn" href="#" target="_blank" rel="noopener"
-              class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
-              style="background:#e09000">
-              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Verificar IPTU
-            </a>
-          </div>
-
-        </div>
-      </div>
+      <!-- ICMS section -->
+      <div id="icmsSection" class="hidden bg-white rounded-2xl shadow-lg p-7 sm:p-10"></div>
 
       <!-- How it works -->
       <div class="bg-white rounded-2xl shadow-lg p-7 sm:p-10">
@@ -366,22 +302,31 @@
         <div class="space-y-3">
           <div class="flex gap-3 items-start">
             <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">1</div>
-            <p class="text-text-body text-sm leading-relaxed">Você escolhe os projetos aprovados que deseja apoiar</p>
+            <p class="text-text-body text-sm leading-relaxed">Você identifica os projetos aprovados que deseja apoiar</p>
           </div>
           <div class="flex gap-3 items-start">
             <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">2</div>
-            <p class="text-text-body text-sm leading-relaxed">Realiza o depósito diretamente na conta do projeto</p>
+            <p class="text-text-body text-sm leading-relaxed">Seu contador valida os valores e faz o depósito diretamente na conta do projeto</p>
           </div>
           <div class="flex gap-3 items-start">
             <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">3</div>
-            <p class="text-text-body text-sm leading-relaxed">Recebe o comprovante oficial (PRONAC / recibo legal)</p>
+            <p class="text-text-body text-sm leading-relaxed">Recebe o comprovante oficial (PRONAC / recibo legal) emitido pelo projeto</p>
           </div>
           <div class="flex gap-3 items-start">
             <div class="w-6 h-6 rounded-full bg-teal text-white text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">4</div>
-            <p class="text-text-body text-sm leading-relaxed">Seu contador aplica o abatimento na declaração</p>
+            <p class="text-text-body text-sm leading-relaxed">O valor é abatido do imposto na declaração — o impacto social não sai do seu bolso</p>
           </div>
         </div>
-        <p class="text-text-muted text-xs mt-4 italic">Nossa equipe te orienta em todo o processo, junto com seu contador.</p>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="rounded-2xl border border-teal/20 p-5" style="background:rgba(38,104,130,0.04)">
+        <div class="flex gap-3 items-start">
+          <svg class="w-4 h-4 text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="text-text-muted text-xs leading-relaxed">
+            <strong class="text-text-body">Estes valores são estimativas educacionais.</strong> Elegibilidade final e valores aprovados devem ser validados com seu contador e assessoria jurídica. Legislação vigente: Rouanet (Lei 8.313/91), Esporte (Lei 9.615/98), FIA (ECA/CONANDA), Estatuto do Idoso (Lei 10.741/03), ICMS-SC (SEITEC/PIC).
+          </p>
+        </div>
       </div>
 
       <!-- CTA -->
@@ -405,13 +350,6 @@
 
   </div>
 
-  <!-- DISCLAIMER -->
-  <div class="max-w-2xl mx-auto px-4 pb-10">
-    <div class="border-l-4 border-teal/30 pl-4 text-text-muted text-xs leading-relaxed">
-      Essa é uma simulação estimada. Percentuais federais baseados nas leis vigentes (Rouanet, Esporte, FIA, Estatuto do Idoso). Incentivos estaduais e municipais dependem da legislação local e da elegibilidade da empresa. <strong>Consulte seu contador.</strong>
-    </div>
-  </div>
-
   <!-- FOOTER -->
   <footer class="bg-navy-deep border-t border-white/5 py-10 px-5 text-center">
     <img src="assets/logo/Logo__7.svg" alt="Cultura Cristã Brasil" class="h-8 mx-auto mb-4 opacity-75">
@@ -423,26 +361,38 @@
 
   <script>
     // ╔══════════════════════════════════════════════════════════════╗
-    // ║  CONFIG — update these 2 blocks for each NGO               ║
+    // ║  CONFIG — update this block for each NGO                   ║
     // ╚══════════════════════════════════════════════════════════════╝
-    const WHATSAPP = '55XXXXXXXXXXX'; // country code + DDD + number, no spaces
+    const CONFIG = {
+      whatsapp: '55XXXXXXXXXXX',   // country code + DDD + number, no spaces
+      orgName:  'Cultura Cristã Brasil',
+      state:    'SC',              // only SC supported currently
 
-    const PROJECTS = [
-      { key: 'cultura',  name: 'Projeto Musical CCB',     desc: 'Formação musical e artística para jovens cristãos.' },
-      { key: 'esporte',  name: 'Projeto Esporte Cristão', desc: 'Treinos esportivos e desenvolvimento para jovens.' },
-      { key: 'infancia', name: 'Apoio às Crianças (CAC)', desc: 'Cuidado, educação e apoio para crianças em vulnerabilidade.' },
-      { key: 'idoso',    name: 'Apoio à Terceira Idade',  desc: 'Programas de cuidado e dignidade para idosos.' }
-    ];
+      // Leave empty [] for standalone/generic mode (no project cards)
+      // law values: 'rouanet' | 'esporte' | 'fia' | 'idoso' | 'icms'
+      projects: [
+        { name: 'Projeto Musical CCB',     law: 'rouanet', approved: true, desc: 'Formação musical e artística para jovens cristãos.',          emoji: '🎵' },
+        { name: 'Projeto Esporte Cristão', law: 'esporte', approved: true, desc: 'Treinos esportivos e desenvolvimento para jovens.',           emoji: '⚽' },
+        { name: 'Apoio às Crianças (CAC)', law: 'fia',     approved: true, desc: 'Cuidado, educação e apoio para crianças em vulnerabilidade.', emoji: '👶' },
+        { name: 'Apoio à Terceira Idade',  law: 'idoso',   approved: true, desc: 'Programas de cuidado e dignidade para idosos.',               emoji: '👴' },
+        // { name: 'Projeto Cultural SC', law: 'icms', approved: true, desc: 'Projeto aprovado nos programas SEITEC/PIC.', emoji: '🏛️' },
+      ]
+    };
     // ╚══════════════════════════════════════════════════════════════╝
 
-    let userType = null, maxTotal = 0, vals = {};
+    const WA_SVG = `<svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
 
-    PROJECTS.forEach(p => {
-      const n = document.getElementById(p.key + 'Name');
-      const d = document.getElementById(p.key + 'Desc');
-      if (n) n.textContent = p.name;
-      if (d) d.textContent = p.desc;
-    });
+    const LAW_META = {
+      rouanet: { label: 'Lei Rouanet',       color: '#266882', bg: 'rgba(38,104,130,0.08)',  border: 'rgba(38,104,130,0.2)'  },
+      esporte:  { label: 'Lei do Esporte',    color: '#178e64', bg: 'rgba(23,142,100,0.07)',  border: 'rgba(23,142,100,0.2)'  },
+      fia:      { label: 'FIA',               color: '#ffa300', bg: 'rgba(255,163,0,0.06)',   border: 'rgba(255,163,0,0.2)'   },
+      idoso:    { label: 'Estatuto do Idoso', color: '#3598b9', bg: 'rgba(53,152,185,0.07)',  border: 'rgba(53,152,185,0.2)'  },
+      icms:     { label: 'ICMS — SC',         color: '#178e64', bg: 'rgba(23,142,100,0.07)',  border: 'rgba(23,142,100,0.2)'  },
+    };
+
+    let profile = null;
+    let cap = { rouanet: 0, esporte: 0, fia: 0, idoso: 0, icms: 0 };
+    let grandTotal = 0;
 
     function showStep(id) {
       ['step1','step2','step3'].forEach(s => document.getElementById(s).classList.add('hidden'));
@@ -454,10 +404,13 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function selectType(type) {
-      userType = type;
-      document.getElementById('block-pf').classList.toggle('hidden', type === 'pj');
-      document.getElementById('block-pj').classList.toggle('hidden', type === 'pf');
+    function selectProfile(p) {
+      profile = p;
+      ['pf','lr','lp','sn'].forEach(b => document.getElementById('block-' + b).classList.add('hidden'));
+      if (p === 'sn') {
+        document.getElementById('snWaBtn').href = waLink('Olá! Minha empresa é do Simples Nacional e gostaria de saber mais sobre oportunidades de incentivo fiscal via ICMS. Pode me orientar?');
+      }
+      document.getElementById('block-' + p).classList.remove('hidden');
       showStep('step2');
     }
 
@@ -470,85 +423,183 @@
 
     function parseBRL(s) { return parseFloat((s||'').replace(/\./g,'').replace(',','.')) || 0; }
     function formatBRL(n) { return n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-    function fmtInt(n) { return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
+    function fmtInt(n)    { return n.toLocaleString('pt-BR', { minimumFractionDigits: 0,  maximumFractionDigits: 0  }); }
+    function waLink(msg)  { return `https://wa.me/${CONFIG.whatsapp}?text=` + encodeURIComponent(msg); }
 
     function markError(id) {
       const el = document.getElementById(id);
+      if (!el) return;
       el.style.borderColor = '#ef4444';
       setTimeout(() => el.style.borderColor = '', 2500);
     }
 
     function calculate() {
-      let pfCultura = 0, pfEsporte = 0, pfInfancia = 0, pfIdoso = 0, pfTotal = 0;
-      let pjCultura = 0, pjEsporte = 0, pjInfancia = 0, pjIdoso = 0, pjTotal = 0;
-      let valid = true;
+      cap = { rouanet: 0, esporte: 0, fia: 0, idoso: 0, icms: 0 };
 
-      if (userType === 'pf' || userType === 'ambos') {
-        const ir = parseBRL(document.getElementById('irInputPF').value);
-        if (ir <= 0) { markError('irInputPF'); valid = false; }
-        else {
-          const t = ir * 0.06;
-          pfCultura = t*(4/8); pfEsporte = t*(2/8); pfInfancia = t*(1/8); pfIdoso = t*(1/8);
-          pfTotal = t;
-        }
+      if (profile === 'pf') {
+        const irpf = parseBRL(document.getElementById('inputIRPF').value);
+        if (irpf <= 0) { markError('inputIRPF'); return; }
+        const t = irpf * 0.06;
+        cap.rouanet = t * (4/8);
+        cap.esporte = t * (2/8);
+        cap.fia     = t * (1/8);
+        cap.idoso   = t * (1/8);
+
+      } else if (profile === 'lr') {
+        const irpj = parseBRL(document.getElementById('inputIRPJ').value);
+        if (irpj <= 0) { markError('inputIRPJ'); return; }
+        cap.rouanet = irpj * 0.04;
+        cap.esporte = irpj * 0.02;
+        cap.fia     = irpj * 0.01;
+        cap.idoso   = irpj * 0.01;
+        const icms = parseBRL(document.getElementById('inputICMS_lr').value);
+        if (icms > 0) cap.icms = icms * 0.15;
+
+      } else if (profile === 'lp') {
+        const icms = parseBRL(document.getElementById('inputICMS_lp').value);
+        if (icms <= 0) { markError('inputICMS_lp'); return; }
+        cap.icms = icms * 0.15;
       }
 
-      if (userType === 'pj' || userType === 'ambos') {
-        const ir = parseBRL(document.getElementById('irInputPJ').value);
-        if (ir <= 0) { markError('irInputPJ'); valid = false; }
-        else {
-          pjCultura = ir*0.04; pjEsporte = ir*0.02; pjInfancia = ir*0.01; pjIdoso = ir*0.01;
-          pjTotal = pjCultura + pjEsporte + pjInfancia + pjIdoso;
-        }
-      }
-
-      if (!valid) return;
-
-      maxTotal = pfTotal + pjTotal;
-      vals = { pfTotal, pjTotal, pjCultura, pjEsporte, pjInfancia, pjIdoso,
-               cultura: pfCultura+pjCultura, esporte: pfEsporte+pjEsporte,
-               infancia: pfInfancia+pjInfancia, idoso: pfIdoso+pjIdoso };
-
+      grandTotal = cap.rouanet + cap.esporte + cap.fia + cap.idoso + cap.icms;
       renderResults();
-      setLinks();
+      document.getElementById('waBtn').href = waLink(`Olá! Fiz a simulação e posso destinar cerca de R$ ${formatBRL(grandTotal)} via incentivos fiscais. Pode me orientar sobre os próximos passos?`);
       showStep('step3');
     }
 
     function renderResults() {
-      document.getElementById('totalDisplay').textContent = fmtInt(maxTotal);
-
-      const showPF = userType === 'pf' || userType === 'ambos';
-      const showPJ = userType === 'pj' || userType === 'ambos';
-      document.getElementById('res-pf').classList.toggle('hidden', !showPF);
-      document.getElementById('res-pj').classList.toggle('hidden', !showPJ);
-      document.getElementById('res-combined').classList.toggle('hidden', userType !== 'ambos');
-
-      if (showPF) document.getElementById('pfTotal').textContent = fmtInt(vals.pfTotal);
-      if (showPJ) {
-        document.getElementById('pjTotal').textContent    = fmtInt(vals.pjTotal);
-        document.getElementById('pjCulturaVal').textContent  = fmtInt(vals.pjCultura);
-        document.getElementById('pjEsporteVal').textContent  = fmtInt(vals.pjEsporte);
-        document.getElementById('pjInfanciaVal').textContent = fmtInt(vals.pjInfancia);
-        document.getElementById('pjIdosoVal').textContent    = fmtInt(vals.pjIdoso);
-      }
-
-      document.getElementById('culturaVal').textContent  = fmtInt(vals.cultura);
-      document.getElementById('esporteVal').textContent  = fmtInt(vals.esporte);
-      document.getElementById('infanciaVal').textContent = fmtInt(vals.infancia);
-      document.getElementById('idosoVal').textContent    = fmtInt(vals.idoso);
+      document.getElementById('totalDisplay').textContent = fmtInt(grandTotal);
+      renderLawBreakdown();
+      renderProjectSection();
+      renderICMSSection();
     }
 
-    function setLinks() {
-      const base = `https://wa.me/${WHATSAPP}?text=`;
-      const irVal = formatBRL(maxTotal);
-      document.getElementById('waBtn').href   = base + encodeURIComponent(`Olá! Fiz a simulação e posso direcionar cerca de R$ ${irVal} via Imposto de Renda. Também quero entender oportunidades com ICMS, ISS e IPTU. Pode me orientar?`);
-      document.getElementById('icmsBtn').href = base + encodeURIComponent(`Olá! Tenho interesse em verificar oportunidades de incentivo com ICMS. Pode me orientar?`);
-      document.getElementById('issBtn').href  = base + encodeURIComponent(`Olá! Tenho interesse em verificar incentivos municipais via ISS. Pode me orientar?`);
-      document.getElementById('iptuBtn').href = base + encodeURIComponent(`Olá! Tenho interesse em verificar oportunidades de incentivo com IPTU. Pode me orientar?`);
+    function renderLawBreakdown() {
+      const ineligible = profile === 'lp';
+      const isPF = profile === 'pf';
+
+      const rows = [
+        { key: 'rouanet', name: 'Lei Rouanet',       sub: ineligible ? 'Cultura · Requer Lucro Real' : (isPF ? 'Cultura · 3% do IRPF'  : 'Cultura · 4% do IRPJ')  },
+        { key: 'esporte', name: 'Lei do Esporte',    sub: ineligible ? 'Esporte · Requer Lucro Real' : (isPF ? 'Esporte · 1,5% do IRPF' : 'Esporte · 2% do IRPJ') },
+        { key: 'fia',     name: 'FIA',               sub: ineligible ? 'Infância · Requer Lucro Real': (isPF ? 'Infância · 0,75% do IRPF': 'Infância · 1% do IRPJ') },
+        { key: 'idoso',   name: 'Estatuto do Idoso', sub: ineligible ? 'Idoso · Requer Lucro Real'   : (isPF ? 'Idoso · 0,75% do IRPF'  : 'Idoso · 1% do IRPJ')   },
+      ];
+
+      document.getElementById('lawBreakdown').innerHTML = rows.map(r => {
+        const m = LAW_META[r.key];
+        return `
+          <div class="flex items-center justify-between py-3 border-b border-teal/10 last:border-0">
+            <div>
+              <div class="font-bold text-text-dark text-sm">${r.name}</div>
+              <div class="text-text-muted text-xs">${r.sub}</div>
+            </div>
+            ${ineligible
+              ? `<span class="text-xs text-gray-400 italic shrink-0 ml-3">Não se aplica</span>`
+              : `<span class="font-bold text-sm shrink-0 ml-3" style="color:${m.color}">R$ ${fmtInt(cap[r.key])}</span>`
+            }
+          </div>`;
+      }).join('');
+    }
+
+    function renderProjectSection() {
+      const el = document.getElementById('projectSection');
+      const applicable = CONFIG.projects.filter(p => p.approved && cap[p.law] > 0);
+
+      if (!applicable.length) {
+        el.innerHTML = `
+          <h3 class="font-toska text-xl text-navy font-normal mb-2">Encontre projetos aprovados</h3>
+          <p class="text-text-muted text-xs mb-5 leading-relaxed">Existem centenas de projetos culturais, esportivos e sociais aprovados pelas leis de incentivo. Nossa equipe pode te conectar com os que fazem mais sentido para o seu perfil.</p>
+          <a href="${waLink(`Olá! Fiz a simulação e posso destinar cerca de R$ ${formatBRL(grandTotal)} via incentivos fiscais. Gostaria de ser conectado a projetos aprovados. Pode me orientar?`)}" target="_blank" rel="noopener"
+            class="flex items-center justify-center gap-3 w-full py-4 text-white font-bold text-sm rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 no-underline"
+            style="background:#25D366">
+            ${WA_SVG.replace('w-4 h-4','w-5 h-5')}
+            Quero ser conectado a projetos aprovados
+          </a>`;
+        return;
+      }
+
+      const cards = applicable.map(p => {
+        const m = LAW_META[p.law];
+        const msg = waLink(`Olá! Fiz a simulação e gostaria de apoiar o projeto "${p.name}" (${m.label}) com cerca de R$ ${formatBRL(cap[p.law])}. Pode me orientar sobre os próximos passos?`);
+        return `
+          <div class="rounded-xl p-4 border" style="background:${m.bg};border-color:${m.border}">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-xl shrink-0">${p.emoji}</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0" style="background:${m.bg};color:${m.color};border:1px solid ${m.border}">${m.label}</span>
+              </div>
+              <span class="font-toska text-xl font-bold shrink-0 ml-2" style="color:${m.color}">R$ ${fmtInt(cap[p.law])}</span>
+            </div>
+            <div class="font-bold text-text-dark text-sm mb-1">${p.name}</div>
+            <p class="text-text-muted text-xs leading-relaxed mb-3">${p.desc}</p>
+            <a href="${msg}" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 py-2 px-4 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
+              style="background:${m.color}">
+              ${WA_SVG}
+              Apoiar este projeto →
+            </a>
+          </div>`;
+      }).join('');
+
+      el.innerHTML = `
+        <h3 class="font-toska text-xl text-navy font-normal mb-1">Veja como seu imposto gera impacto</h3>
+        <p class="text-text-muted text-xs mb-5">Projetos de ${CONFIG.orgName} aprovados para o seu perfil</p>
+        <div class="space-y-3">${cards}</div>`;
+    }
+
+    function renderICMSSection() {
+      const el = document.getElementById('icmsSection');
+      if (profile === 'sn') { el.classList.add('hidden'); return; }
+      el.classList.remove('hidden');
+
+      if (cap.icms > 0) {
+        const icmsProject = CONFIG.projects.find(p => p.law === 'icms' && p.approved);
+        const msg = waLink(`Olá! Fiz a simulação e posso direcionar cerca de R$ ${formatBRL(cap.icms)} via ICMS-SC (SEITEC/PIC). Pode me orientar?`);
+        el.innerHTML = `
+          <h3 class="font-toska text-xl text-navy font-normal mb-1">ICMS — Santa Catarina</h3>
+          <p class="text-text-muted text-xs mb-4 leading-relaxed">Estimativa via programas SEITEC e PIC-SC. Sujeito a aprovação e regras específicas do programa.</p>
+          <div class="rounded-xl border p-4 mb-4" style="background:rgba(23,142,100,0.06);border-color:rgba(23,142,100,0.2)">
+            <div class="flex items-center justify-between">
+              <span class="text-text-body text-sm">Estimativa ICMS-SC (~15%)</span>
+              <span class="font-toska text-xl font-bold text-green-dark">R$ ${fmtInt(cap.icms)}</span>
+            </div>
+            ${icmsProject ? `
+            <div class="mt-3 pt-3 border-t border-green-dark/15">
+              <div class="flex items-center gap-2 mb-1">
+                <span>${icmsProject.emoji}</span>
+                <span class="font-bold text-text-dark text-sm">${icmsProject.name}</span>
+              </div>
+              <p class="text-text-muted text-xs leading-relaxed">${icmsProject.desc}</p>
+            </div>` : ''}
+          </div>
+          <a href="${msg}" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
+            style="background:#178e64">
+            ${WA_SVG}
+            Verificar elegibilidade ICMS-SC
+          </a>`;
+      } else {
+        const msg = waLink('Olá! Tenho interesse em verificar oportunidades de incentivo com ICMS em SC. Pode me orientar?');
+        el.innerHTML = `
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <h3 class="font-toska text-xl text-navy font-normal mb-1">ICMS — Santa Catarina</h3>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background:rgba(23,142,100,0.1);color:#178e64">Oportunidade estadual</span>
+            </div>
+            <span class="text-2xl shrink-0">🏛️</span>
+          </div>
+          <p class="text-text-body text-xs leading-relaxed mb-3">Empresas em SC podem direcionar parte do ICMS via <strong>SEITEC</strong> e <strong>PIC</strong>. Potencial de até <strong class="text-green-dark">~15% do ICMS pago</strong>. Informe o ICMS no passo anterior para ver um valor estimado.</p>
+          <a href="${msg}" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 py-2.5 px-5 text-white text-xs font-bold rounded-xl no-underline transition-all hover:opacity-90"
+            style="background:#178e64">
+            ${WA_SVG}
+            Quero verificar meu ICMS
+          </a>`;
+      }
     }
 
     function copyContador() {
-      const msg = `Olá, gostaria de fazer destinação via leis de incentivo fiscal (federal, estadual e municipal). Pode me orientar com base nesse valor estimado de R$ ${formatBRL(maxTotal)}?`;
+      const msg = `Olá, gostaria de fazer destinação via leis de incentivo fiscal (federal, estadual e municipal). Pode me orientar com base nesse valor estimado de R$ ${formatBRL(grandTotal)}?`;
       navigator.clipboard.writeText(msg).then(() => {
         const ok = document.getElementById('copyOk');
         ok.classList.remove('hidden');
@@ -557,8 +608,13 @@
     }
 
     function restart() {
-      userType = null; maxTotal = 0; vals = {};
-      ['irInputPF','irInputPJ'].forEach(id => { document.getElementById(id).value = ''; });
+      profile = null;
+      cap = { rouanet: 0, esporte: 0, fia: 0, idoso: 0, icms: 0 };
+      grandTotal = 0;
+      ['inputIRPF','inputIRPJ','inputICMS_lr','inputICMS_lp'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
       showStep('step1');
     }
 
