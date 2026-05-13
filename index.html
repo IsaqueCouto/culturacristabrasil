@@ -1373,14 +1373,30 @@
       gap: 5px;
       font-family: 'Mundial', sans-serif;
       font-weight: 700;
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--orange);
-      background: rgba(255,163,0,0.1);
-      border: 1px solid rgba(255,163,0,0.28);
+      background: rgba(255,163,0,0.12);
+      border: 1px solid rgba(255,163,0,0.35);
       border-radius: 20px;
-      padding: 3px 10px;
+      padding: 4px 12px;
+    }
+    .ec-hero-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      background: rgba(255,163,0,0.1);
+      border: 1px solid rgba(255,163,0,0.35);
+      border-radius: 8px;
+      color: var(--orange);
+      font-family: 'Mundial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
     .ec-photo-placeholder {
       position: absolute;
@@ -1410,8 +1426,20 @@
       z-index: 3;
     }
     .ec-section-note {
-      text-align: center;
-      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      background: rgba(255,163,0,0.07);
+      border: 1px solid rgba(255,163,0,0.25);
+      border-radius: 8px;
+      color: var(--orange);
+      font-family: 'Mundial', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
     }
     .ec-contact-note {
       display: block;
@@ -1470,6 +1498,9 @@
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
           <span>Cultura Cristã Brasil</span>
+        </div>
+        <div class="ec-hero-notice">
+          🔧 Site em construção — textos, imagens e conteúdos sendo finalizados
         </div>
         <h1 class="hero-title">
           ESTRATÉGIA<br>
@@ -1540,6 +1571,7 @@
           <span class="sub-line">Cristã Brasil!</span>
         </h2>
         <div class="about-divider"></div>
+        <div class="ec-section-note">🔧 Conteúdo em construção — textos e estatísticas sendo atualizados</div>
         <p class="about-text">
           A Cultura Cristã Brasil é um ministério dedicado a fortalecer a identidade
           cristã no contexto brasileiro, promovendo formação teológica, liderança
@@ -1603,6 +1635,7 @@
       <div class="especialistas-header">
         <span class="section-label" style="justify-content:center">Nossa Equipe</span>
         <h2 class="especialistas-title">Conheça nossos<br>Especialistas</h2>
+        <div class="ec-section-note" style="justify-content:center;margin-top:16px">🔧 Fotos e bios dos especialistas em construção</div>
       </div>
 
       <div class="especialistas-grid">
@@ -1716,6 +1749,7 @@
     <div class="acompanhe-inner">
       <div class="acompanhe-header">
         <h2 class="acompanhe-heading">Acompanhe</h2>
+        <div class="ec-section-note" style="margin-top:16px">🔧 Vídeos e conteúdos em construção — em breve</div>
         <div class="acompanhe-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1807,6 +1841,7 @@
         Estamos prontos para atender pastores, líderes e igrejas.
         Entre em contato e descubra como podemos caminhar juntos.
       </p>
+      <div class="ec-section-note" style="margin-top:16px">🔧 Informações de contato em atualização — em breve</div>
       <div class="contact-items">
         <div class="contact-item">
           <div class="contact-icon">
@@ -1964,18 +1999,24 @@
       revealObserver.observe(el);
     });
 
-    // Em Construção — image fallback placeholders
-    const PERSON_SVG = '<svg style="width:42px;height:42px;opacity:0.2;color:#e8f4fb" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>';
-    const CAMERA_SVG = '<svg style="width:38px;height:38px;opacity:0.2;color:#e8f4fb" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>';
+    // Em Construção — image placeholders (shown immediately, hidden when real image loads)
+    const PERSON_SVG = '<svg style="width:48px;height:48px;opacity:0.25;color:#e8f4fb" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>';
+    const CAMERA_SVG = '<svg style="width:44px;height:44px;opacity:0.25;color:#e8f4fb" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>';
     document.querySelectorAll('img[src*="assets/images/"]').forEach(function(img) {
       const isAvatar = !!img.closest('.avatar-inner');
       const ph = document.createElement('div');
       ph.className = isAvatar ? 'ec-avatar-placeholder' : 'ec-photo-placeholder';
-      ph.innerHTML = (isAvatar ? PERSON_SVG : CAMERA_SVG) + '<span class="ec-badge" style="font-size:0.55rem">Em Construção</span>';
+      ph.innerHTML = (isAvatar ? PERSON_SVG : CAMERA_SVG) + '<span class="ec-badge" style="font-size:0.6rem">Em Construção</span>';
       img.parentNode.appendChild(ph);
+      // Show placeholder immediately; hide when real image loads
+      ph.style.display = 'flex';
+      img.style.display = 'none';
+      img.onload = function() {
+        this.style.display = '';
+        ph.style.display = 'none';
+      };
       img.onerror = function() {
-        this.style.display = 'none';
-        ph.style.display = 'flex';
+        // placeholder already showing
       };
     });
   </script>
