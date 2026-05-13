@@ -1365,6 +1365,63 @@
       .hero-actions { flex-direction: column; align-items: center; }
       .hero-actions .btn { width: 100%; max-width: 280px; justify-content: center; }
     }
+
+    /* ─── EM CONSTRUÇÃO ──────────────────────────────────────── */
+    .ec-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Mundial', sans-serif;
+      font-weight: 700;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(255,163,0,0.1);
+      border: 1px solid rgba(255,163,0,0.28);
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+    .ec-photo-placeholder {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #0d2535 0%, #1a3a4a 100%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      z-index: 2;
+    }
+    .ec-avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #0d2535 0%, #1a3a4a 100%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .ec-thumb-badge {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      z-index: 3;
+    }
+    .ec-section-note {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .ec-contact-note {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--orange);
+      opacity: 0.8;
+      margin-top: 3px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
   </style>
 </head>
 <body>
@@ -1637,6 +1694,9 @@
         <span class="section-label" style="justify-content:center">Parceiros</span>
         <h2 class="parceiros-title">Quem Caminha Conosco</h2>
       </div>
+      <div class="ec-section-note">
+        <span class="ec-badge">🔧 Logos dos parceiros em construção</span>
+      </div>
       <div class="parceiros-track">
         <div class="partner-logo"><span class="partner-abbr">IBB</span></div>
         <div class="partner-logo"><span class="partner-abbr">CPAD</span></div>
@@ -1669,6 +1729,7 @@
         <div class="video-card">
           <div class="video-thumb">
             <div class="video-thumb-bg thumb-1"></div>
+            <div class="ec-thumb-badge"><span class="ec-badge">Em Construção</span></div>
             <div class="thumb-cross">
               <svg viewBox="0 0 36 44" fill="none">
                 <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(88,182,231,0.3)"/>
@@ -1691,6 +1752,7 @@
         <div class="video-card">
           <div class="video-thumb">
             <div class="video-thumb-bg thumb-2"></div>
+            <div class="ec-thumb-badge"><span class="ec-badge">Em Construção</span></div>
             <div class="thumb-cross" style="top:35%">
               <svg viewBox="0 0 36 44" fill="none">
                 <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(81,208,129,0.25)"/>
@@ -1713,6 +1775,7 @@
         <div class="video-card">
           <div class="video-thumb">
             <div class="video-thumb-bg thumb-3"></div>
+            <div class="ec-thumb-badge"><span class="ec-badge">Em Construção</span></div>
             <div class="thumb-cross" style="top:30%">
               <svg viewBox="0 0 36 44" fill="none">
                 <rect x="14" y="0" width="8" height="44" rx="2" fill="rgba(255,163,0,0.25)"/>
@@ -1753,7 +1816,7 @@
           </div>
           <div>
             <p class="contact-item-label">Telefone</p>
-            <p class="contact-item-value">+55 (11) 3456-7890<br>+55 (11) 98765-4321</p>
+            <p class="contact-item-value">+55 (11) 3456-7890<br>+55 (11) 98765-4321<span class="ec-contact-note">Em atualização — em breve</span></p>
           </div>
         </div>
         <div class="contact-item">
@@ -1776,7 +1839,7 @@
           </div>
           <div>
             <p class="contact-item-label">Endereço</p>
-            <p class="contact-item-value">Av. Paulista, 1000 — Bela Vista<br>São Paulo, SP · CEP 01310-100</p>
+            <p class="contact-item-value">Av. Paulista, 1000 — Bela Vista<br>São Paulo, SP · CEP 01310-100<span class="ec-contact-note">Em atualização — em breve</span></p>
           </div>
         </div>
       </div>
@@ -1899,6 +1962,21 @@
       el.style.transform = (el.style.transform || '') + ' translateY(24px)';
       el.style.transition = `opacity 0.6s ease ${i * 0.07}s, transform 0.6s ease ${i * 0.07}s, box-shadow 0.3s, border-color 0.3s`;
       revealObserver.observe(el);
+    });
+
+    // Em Construção — image fallback placeholders
+    const PERSON_SVG = '<svg style="width:42px;height:42px;opacity:0.2;color:#e8f4fb" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>';
+    const CAMERA_SVG = '<svg style="width:38px;height:38px;opacity:0.2;color:#e8f4fb" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>';
+    document.querySelectorAll('img[src*="assets/images/"]').forEach(function(img) {
+      const isAvatar = !!img.closest('.avatar-inner');
+      const ph = document.createElement('div');
+      ph.className = isAvatar ? 'ec-avatar-placeholder' : 'ec-photo-placeholder';
+      ph.innerHTML = (isAvatar ? PERSON_SVG : CAMERA_SVG) + '<span class="ec-badge" style="font-size:0.55rem">Em Construção</span>';
+      img.parentNode.appendChild(ph);
+      img.onerror = function() {
+        this.style.display = 'none';
+        ph.style.display = 'flex';
+      };
     });
   </script>
 
